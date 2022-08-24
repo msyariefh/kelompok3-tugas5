@@ -3,15 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MedicPowerUp : MonoBehaviour
+namespace TankU.PowerUP
 {
-    public GameObject medicpowerFX;
-    public event Action OnMedicPowerUp;
-    private void OnTriggerEnter(Collider other)
+    public class MedicPowerUp : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        public GameObject medicpowerFX;
+        public event Action OnMedicPowerUp;
+        private void OnTriggerEnter(Collider other)
         {
-            OnMedicPowerUp?.Invoke();
+            if (other.CompareTag("Player"))
+            {
+                OnMedicPowerUp?.Invoke();
+            }
         }
     }
 }
+

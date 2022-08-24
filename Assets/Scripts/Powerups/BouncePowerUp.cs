@@ -3,17 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BouncePowerUp : MonoBehaviour
+namespace TankU.PowerUP
 {
-    public GameObject bouncepowerFX;
-    public event Action OnBouncePowerUp;
-    private void OnTriggerEnter(Collider other)
+    public class BouncePowerUp : MonoBehaviour
     {
-        if(other.CompareTag("Player"))
+        public GameObject bouncepowerFX;
+        public event Action OnBouncePowerUp;
+        private void OnTriggerEnter(Collider other)
         {
-            OnBouncePowerUp?.Invoke();
+            if(other.CompareTag("Player"))
+            {
+                OnBouncePowerUp?.Invoke();
+            }
         }
-    }
 
    
+    }
 }
+
