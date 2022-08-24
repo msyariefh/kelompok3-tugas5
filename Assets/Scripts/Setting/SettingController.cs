@@ -15,7 +15,6 @@ namespace TankU.Setting
 
         private void Awake()
         {
-            _audioManager.ChangeSettingObject(gameObject);
             _toggle.isOn = _audioManager.LoadAudioSetting();
             _isOn = _toggle.isOn;
         }
@@ -30,9 +29,9 @@ namespace TankU.Setting
             }
         }
 
-        public void UpdateAudioSetting(bool _isOn)
+        public void UpdateAudioSetting(bool _isMute)
         {
-            _audioManager.UpdateAudioSetting(_isOn);
+            _audioManager.UpdateAudioSetting(_isMute);
         }
 
     }

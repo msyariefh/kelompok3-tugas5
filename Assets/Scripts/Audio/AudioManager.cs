@@ -8,7 +8,6 @@ namespace TankU.Audio
     {
         [SerializeField] private ScriptableSounds _savedSounds;
         [SerializeField] private AudioMixerGroup _masterAudio;
-        private GameObject _setting;
         private Sound[] _sounds;
         public static AudioManager Instance { get; private set; }
 
@@ -32,13 +31,13 @@ namespace TankU.Audio
                 _sound.AudioSource = gameObject.AddComponent<AudioSource>();
                 AudioSourceInit(_sound);
             }
-
-            PlayBGM(_savedSounds.MainMenuBGM); // Only called once when application is opened
+            
         }
 
-        public void ChangeSettingObject(GameObject _setting)
+        private void Start()
         {
-            this._setting = _setting;
+            LoadAudioSetting();
+            PlayBGM(_savedSounds.MainMenuBGM); // Only called once when application is opened
         }
 
         private void UpdateMixerVolume(bool _isMute)
@@ -52,6 +51,7 @@ namespace TankU.Audio
             if (!PlayerPrefs.HasKey("_isMute"))
             {
                 PlayerPrefs.SetInt("_isMute", 0);
+                PlayerPrefs.Save();
             }
             _temp = !(PlayerPrefs.GetInt("_isMute") == 0);
             UpdateMixerVolume(_temp);
@@ -63,8 +63,10 @@ namespace TankU.Audio
             if (!PlayerPrefs.HasKey("_isMute"))
             {
                 PlayerPrefs.SetInt("_isMute", 0);
+                PlayerPrefs.Save();
             }
             PlayerPrefs.SetInt("_isMute", _isMute ? 1 : 0);
+            PlayerPrefs.Save();
             UpdateMixerVolume(_isMute);
         }
 
