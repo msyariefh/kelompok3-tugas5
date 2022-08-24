@@ -32,7 +32,7 @@ namespace TankU.Audio
                 _sound.AudioSource = gameObject.AddComponent<AudioSource>();
                 AudioSourceInit(_sound);
             }
-
+            LoadAudioSetting();
             PlayBGM(_savedSounds.MainMenuBGM); // Only called once when application is opened
         }
 
