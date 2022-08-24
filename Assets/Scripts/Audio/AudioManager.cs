@@ -31,7 +31,6 @@ namespace TankU.Audio
                 _sound.AudioSource = gameObject.AddComponent<AudioSource>();
                 AudioSourceInit(_sound);
             }
-            
         }
 
         private void Start()
