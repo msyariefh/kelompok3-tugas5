@@ -10,29 +10,26 @@ namespace TankU.Setting
     public class SettingController : MonoBehaviour
     {
         [SerializeField] private Toggle _toggle;
-        private bool _isOn;
+        [SerializeField] private Button _exitButton;
 
         private void Awake()
         {
+            _exitButton.onClick.AddListener(OnExitButtonClicked);
             _toggle.isOn = AudioManager.Instance.LoadAudioSetting();
-            _isOn = _toggle.isOn;
+            _toggle.onValueChanged.AddListener(OnToggleChanged);
         }
-
-        private void Update()
+        private void OnToggleChanged(bool _isOn)
         {
-            if (_toggle.isOn == _isOn) return;
-            else
-            {
-                UpdateAudioSetting(_toggle.isOn);
-                _isOn = _toggle.isOn;
-            }
+            UpdateAudioSetting(_isOn);
         }
-
         public void UpdateAudioSetting(bool _isMute)
         {
             AudioManager.Instance.UpdateAudioSetting(_isMute);
         }
-
+        public void OnExitButtonClicked()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
 

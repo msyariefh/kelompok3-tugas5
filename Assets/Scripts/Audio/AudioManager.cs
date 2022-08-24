@@ -36,7 +36,7 @@ namespace TankU.Audio
         private void Start()
         {
             LoadAudioSetting();
-            PlayBGM(_savedSounds.MainMenuBGM); // Only called once when application is opened
+            //PlayBGM(_savedSounds.MainMenuBGM); // Only called once when application is opened
         }
 
         private void UpdateMixerVolume(bool _isMute)
