@@ -9,13 +9,12 @@ namespace TankU.Setting
 {
     public class SettingController : MonoBehaviour
     {
-        [SerializeField] private AudioManager _audioManager;
         [SerializeField] private Toggle _toggle;
         private bool _isOn;
 
         private void Awake()
         {
-            _toggle.isOn = _audioManager.LoadAudioSetting();
+            _toggle.isOn = AudioManager.Instance.LoadAudioSetting();
             _isOn = _toggle.isOn;
         }
 
@@ -31,7 +30,7 @@ namespace TankU.Setting
 
         public void UpdateAudioSetting(bool _isMute)
         {
-            _audioManager.UpdateAudioSetting(_isMute);
+            AudioManager.Instance.UpdateAudioSetting(_isMute);
         }
 
     }
