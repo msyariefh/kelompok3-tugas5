@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using TankU.Timer;
 using TankU.HPSystem;
+using TankU.PowerUP;
 
 namespace TankU.HUD
 {
@@ -13,6 +14,7 @@ namespace TankU.HUD
         [Header("References")]
         [SerializeField] private TimerController _timerController;
         [SerializeField] private HPController _hpController;
+        [SerializeField] private PowerUpController _powerUpController;
 
         [Header("Pop-Up")]
         [SerializeField]
@@ -39,6 +41,7 @@ namespace TankU.HUD
         {
             _timerController.OnTimerChange += OnTimerChange;
             _hpController.OnPlayerHealthChange += OnHealthPlayerChange;
+            _powerUpController.OnBouncePowerUp += OnBouncePowerUp;
 
         }
 
@@ -46,6 +49,7 @@ namespace TankU.HUD
         {
             _timerController.OnTimerChange -= OnTimerChange;
             _hpController.OnPlayerHealthChange -= OnHealthPlayerChange;
+            _powerUpController.OnBouncePowerUp -= OnBouncePowerUp;
         }
 
         void Start()
@@ -83,7 +87,7 @@ namespace TankU.HUD
             _timertext.GetComponent<TextMeshProUGUI>().text = string.Format("{0}:{1}", s1.Substring(s1.Length - 2), s2.Substring(s2.Length - 2));
         }
 
-        void OnBouncePowerUp(int _index)
+        void OnBouncePowerUp(int _index, float _time)
         {
             switch (_index)
             {
