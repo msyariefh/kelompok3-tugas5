@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TankU.PowerUP;
+using TankU.Projectile;
 using TankU.Timer;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace TankU.HPSystem
     {
         [SerializeField] private TimerController _timerController;
         [SerializeField] private PowerUpController _powerUpController;
+        [SerializeField] private ProjectileController _projectileController;
         [SerializeField] private int _maximumPlayerHP;
 
         public event Action<int> OnGameOver;
@@ -28,11 +30,13 @@ namespace TankU.HPSystem
         {
             _timerController.OnTimesUp += OnTimesUp;
             _powerUpController.OnMedicPowerUp += OnMedicPowerUp;
+            _projectileController.OnPlayerHit += OnPlayerHit;
         }
         private void OnDisable()
         {
             _timerController.OnTimesUp -= OnTimesUp;
             _powerUpController.OnMedicPowerUp -= OnMedicPowerUp;
+            _projectileController.OnPlayerHit -= OnPlayerHit;
         }
 
         private void OnPlayerHit(int _playerIndex, int _damage)

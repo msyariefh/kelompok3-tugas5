@@ -8,7 +8,7 @@ namespace TankU.Bomb
     {
         [SerializeField] private GameObject _bombPrefab;
 
-        private List<GameObject> _bombPool;
+        private List<GameObject> _bombPool = new List<GameObject>();
 
         private void OnEnable()
         {
