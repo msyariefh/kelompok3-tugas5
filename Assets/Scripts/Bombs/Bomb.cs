@@ -38,9 +38,15 @@ namespace TankU.Bomb
             //transform.Find("Collider").gameObject.SetActive(false);
 
             //Destroy the bomb object in 0.3 seconds, after all coroutines have finished
-            Destroy(gameObject, .3f);
+
+            StartCoroutine(DisableObjectAfter(.3f));
         }
 
+        IEnumerator DisableObjectAfter(float _time)
+        {
+            yield return new WaitForSeconds(_time);
+            gameObject.SetActive(false);
+        }
 
         private IEnumerator CreateExplosions(Vector3 direction)
         {
