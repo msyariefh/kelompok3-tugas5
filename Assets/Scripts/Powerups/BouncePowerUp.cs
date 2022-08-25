@@ -3,15 +3,19 @@ using UnityEngine;
 
 namespace TankU.PowerUP
 {
-    public class BouncePowerUp : MonoBehaviour
+    public class BouncePowerUp : MonoBehaviour, IPickable
     {
         public GameObject bouncepowerFX;
-        public event Action OnBouncePowerUp;
+        public event Action<int, int> OnPlayerPicked;
+
         private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player"))
+            if(other.CompareTag("Player1"))
             {
-                OnBouncePowerUp?.Invoke();
+                OnPlayerPicked?.Invoke(0, 0);
+            }else if (other.CompareTag("Player2"))
+            {
+                OnPlayerPicked?.Invoke(1, 0);
             }
         }
 
