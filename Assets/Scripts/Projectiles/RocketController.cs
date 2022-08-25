@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TankU.Timer;
@@ -5,13 +6,15 @@ using UnityEngine;
 
 namespace TankU.Projectile
 {
-    public class RocketController : MonoBehaviour, IPausable
+    public class RocketController : MonoBehaviour, IPausable, IHitable
     {
         [SerializeField] private float speed;
         private float _speedInitial;
         private Rigidbody rb;
         //private bool exploded = false;
         [SerializeField] private GameObject explosionPrefab;
+
+        public event Action<int> OnHitPlayer;
 
         public void OnGameOver()
         {
@@ -32,15 +35,20 @@ namespace TankU.Projectile
         {
             rb = GetComponent<Rigidbody>();
             _speedInitial = speed;
-            rb.velocity = speed*transform.forward;
+            rb.velocity = speed * transform.forward;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player1"))
             {
-                Explode();
+                OnHitPlayer?.Invoke(0);
             }
+            else if (other.CompareTag("Player2"))
+            {
+                OnHitPlayer?.Invoke(1);
+            }
+            gameObject.SetActive(false);
         }
         void Explode()
         {
