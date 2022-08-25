@@ -33,21 +33,6 @@ namespace TankU.GameOver
         }
 
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                OnGameOver(0);
-            }
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                OnGameOver(1);
-            }
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                OnGameOver(2);
-            }
-        }
 
         void OnGameOver(int c)
         {
