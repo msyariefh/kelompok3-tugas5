@@ -5,11 +5,11 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
-namespace TankU.Module.Tutorials
+namespace TankU.Tutorials
 {
     public class Tutorial : MonoBehaviour
     {
-        public static event Action OnGameStart;
+        public event Action OnPlayerReady;
 
         [Header("Tutorial Panel")]
         [SerializeField]
@@ -29,21 +29,12 @@ namespace TankU.Module.Tutorials
         void Start()
         {
 
-            _next.GetComponent<Button>().onClick.AddListener(buttonchecknext);
-            _prev.GetComponent<Button>().onClick.AddListener(buttoncheckprev);
+            _next.GetComponent<Button>().onClick.AddListener(ButtonCheckNext);
+            _prev.GetComponent<Button>().onClick.AddListener(ButtonCheckPrev);
            // popup(true);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-
-
-        }
-
-
-        void popup( bool pop)
+        void PopUp( bool pop)
         {
             _isTutorial = pop;
             if (_isTutorial)
@@ -55,25 +46,25 @@ namespace TankU.Module.Tutorials
             else
                 _tutPopUp.SetActive(false);
         }
-        void next()
+        void Next()
         {
             _tutorialPos += 1;
             Debug.Log(_tutorialPos);
         }
 
 
-        void prev()
+        void Prev()
         {
 
             _tutorialPos -= 1;
             Debug.Log(_tutorialPos);
         }
 
-        void buttonchecknext()
+        void ButtonCheckNext()
         {
-            if (_tutorialPos == _tutorial.transform.childCount - 1 && OnGameStart != null)
+            if (_tutorialPos == _tutorial.transform.childCount - 1)
             {
-                OnGameStart?.Invoke();
+                OnPlayerReady?.Invoke();
                 _tutPopUp.SetActive(false);
             }
 
@@ -81,7 +72,7 @@ namespace TankU.Module.Tutorials
             else if (_tutorialPos == _tutorial.transform.childCount - 2)
             {
                 _next.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Ready";
-                next();
+                Next();
                 foreach (Transform child in _tutorial.transform)
                     child.gameObject.SetActive(false);
 
@@ -92,7 +83,7 @@ namespace TankU.Module.Tutorials
             }
             else if (_tutorialPos >= 0 && _tutorialPos < _tutorial.transform.childCount - 1)
             {
-                next();
+                Next();
                 foreach (Transform child in _tutorial.transform)
                     child.gameObject.SetActive(false);
 
@@ -104,12 +95,12 @@ namespace TankU.Module.Tutorials
             
         }
 
-        void buttoncheckprev() 
+        void ButtonCheckPrev() 
         {
 
             if (_tutorialPos == 1)
             {
-                prev();
+                Prev();
                 _prev.gameObject.SetActive(false);
                 foreach (Transform child in _tutorial.transform)
                     child.gameObject.SetActive(false);
@@ -121,7 +112,7 @@ namespace TankU.Module.Tutorials
 
             else if (_tutorialPos < _tutorial.transform.childCount && _tutorialPos > 0)
             {
-                prev();
+                Prev();
                 foreach (Transform child in _tutorial.transform)
                     child.gameObject.SetActive(false);
 

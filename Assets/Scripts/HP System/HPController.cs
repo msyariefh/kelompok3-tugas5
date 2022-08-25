@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TankU.HPSystem
 {
-    public class HPSystem : MonoBehaviour
+    public class HPController: MonoBehaviour
     {
         [SerializeField] private TimerController _timerController;
         [SerializeField] private int _maximumPlayerHP;

@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using TankU.Timer;
 using UnityEngine;
 
-public class LaunchProjectile : MonoBehaviour
+namespace TankU.Projectile
 {
-    public GameObject projectile;
-    private Rigidbody rb;
-    void Start()
+    public class LaunchProjectile : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        public GameObject projectile;
+        private Rigidbody rb;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
+
+        void Start()
         {
-            GameObject cannonball = Instantiate(projectile, transform.position, transform.rotation);
+            rb = GetComponent<Rigidbody>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                GameObject cannonball = Instantiate(projectile, transform.position, transform.rotation);
+            }
         }
     }
 }
+

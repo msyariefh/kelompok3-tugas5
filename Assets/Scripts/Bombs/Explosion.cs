@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+namespace TankU.Bomb
 {
-    public float Delay = 3f;
-    //Delay in seconds before destroying the gameobject
-
-    void Start()
+    public class Explosion : MonoBehaviour
     {
-        Destroy(gameObject, Delay);
+        [SerializeField] private float _delay = 3f;
+        //Delay in seconds before destroying the gameobject
+
+        void Start()
+        {
+            Destroy(gameObject, _delay);
+        }
     }
 }
+

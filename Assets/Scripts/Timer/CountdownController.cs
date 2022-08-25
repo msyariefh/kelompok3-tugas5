@@ -2,19 +2,30 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using TankU.Tutorials;
 
 namespace TankU.Timer
 {
     public class CountdownController : MonoBehaviour, IPausable
     {
+        [SerializeField] private Tutorial _tutorialController;
         [SerializeField] private int _countdownNumber = 3;
         [SerializeField] private TMP_Text _countdownText;
         private bool _isGamePaused = false;
         public event Action OnCountdownEnded;
-        
+
+        private void OnEnable()
+        {
+            _tutorialController.OnPlayerReady += OnPlayerReady;
+        }
+        private void OnDisable()
+        {
+            _tutorialController.OnPlayerReady -= OnPlayerReady;
+        }
+
         public void OnPlayerReady()
         {
-            gameObject.SetActive(true);
+            //gameObject.SetActive(true);
             StartCoroutine(CountdownStart());
         }
 
