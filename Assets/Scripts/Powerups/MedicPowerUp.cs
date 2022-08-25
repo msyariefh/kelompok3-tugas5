@@ -16,10 +16,12 @@ namespace TankU.PowerUP
             if (other.CompareTag("Player1"))
             {
                 OnPlayerPicked?.Invoke(0, 1);
+                gameObject.SetActive(false);
             }
             else if (other.CompareTag("Player2"))
             {
                 OnPlayerPicked?.Invoke(1, 1);
+                gameObject.SetActive(false);
             }
         }
     }
