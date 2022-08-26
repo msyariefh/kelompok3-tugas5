@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace TankU.PlayerObject
 {
-    public class PlayerController : MonoBehaviour, IPausable
+    public class PlayerController : MonoBehaviour, IPausable, IDamagable, IBuffable
     {
         [SerializeField] int _playerIndex = 0;
         [SerializeField] PowerUpController _powerUpController;
@@ -31,6 +31,8 @@ namespace TankU.PlayerObject
         private int _powerUpTimeLeft = 0;
         private bool _isWaiting = false;
         private bool _isGamePaused = false;
+
+        public int Index => _playerIndex;
 
         private void OnEnable()
         {

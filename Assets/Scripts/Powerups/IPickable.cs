@@ -5,6 +5,6 @@ namespace TankU.PowerUP
 {
     interface IPickable
     {
-        public event Action<int, int> OnPlayerPicked;
+        public event Action<int, PowerUpController.Type> OnPlayerPicked;
     }
 }

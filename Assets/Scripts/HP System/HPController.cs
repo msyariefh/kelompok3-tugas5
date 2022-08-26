@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TankU.PowerUP;
 using TankU.Projectile;
 using TankU.Timer;
@@ -13,17 +13,19 @@ namespace TankU.HPSystem
         [SerializeField] private TimerController _timerController;
         [SerializeField] private PowerUpController _powerUpController;
         [SerializeField] private ProjectileController _projectileController;
+        [SerializeField] private int _totalPlayer = 2;
         [SerializeField] private int _maximumPlayerHP;
 
         public event Action<int> OnGameOver;
         public event Action<int, int> OnPlayerHealthChange;
-        private int[] _playerHPs;
+        private List<int> _playerHPs = new();
 
         private void Start()
         {
-            _playerHPs = new int[2];
-            _playerHPs[0] = _maximumPlayerHP;
-            _playerHPs[1] = _maximumPlayerHP;
+            for(int i = 0; i < _totalPlayer; i++)
+            {
+                _playerHPs.Add(_maximumPlayerHP);
+            }
         }
 
         private void OnEnable()
@@ -45,7 +47,7 @@ namespace TankU.HPSystem
             {
                 _playerHPs[_playerIndex] = 0;
                 OnPlayerHealthChange?.Invoke(_playerIndex, _playerHPs[_playerIndex]);
-                OnGameOver?.Invoke(_playerIndex == 0 ? 1 : 0);
+                OnGameOver?.Invoke(_playerIndex + 1);
                 return;
             }
             _playerHPs[_playerIndex] -= _damage;
@@ -60,8 +62,24 @@ namespace TankU.HPSystem
 
         private void OnTimesUp()
         {
-            OnGameOver?.Invoke(_playerHPs[0] > _playerHPs[1] ? 1 : 
-                _playerHPs[0] < _playerHPs[1] ? 2 : 3);
+            List<int> _possibleTie = new List<int>();
+            var _mostHP = _playerHPs.Max();
+            int _winner = -1;
+            do
+            {
+                _winner = _playerHPs.FindIndex(a => a == _mostHP);
+                _possibleTie.Add(_winner);
+                _playerHPs.RemoveAt(_winner);
+            } while (_winner != -1);
+
+            if (_possibleTie.Count > 1)
+            {
+                OnGameOver?.Invoke(0);
+            }
+            else if (_possibleTie.Count == 1)
+            {
+                OnGameOver?.Invoke(_possibleTie[0] + 1);
+            }
         }
     }
 }

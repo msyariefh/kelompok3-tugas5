@@ -42,18 +42,13 @@ namespace TankU.GameOver
         
         void CheckWin(int c)
         { 
-            switch (c)
+            if (c == 0)
             {
-                case 0:
-                    _winner.text = "Congratulation \n Player 1 Wins"; 
-                    break;
-                case 1:
-                    _winner.text = "Congratulation \n Player 2 Wins";
-                    break;
-                case 2:
-                    _winner.text = "Too Bad No One Win";
-                    break;
-
+                _winner.text = "TIE \nToo Bad, No One Wins!";
+            }
+            else
+            {
+                _winner.text = $"Congratulation! \nPlayer {c} Wins!";
             }
         }
 

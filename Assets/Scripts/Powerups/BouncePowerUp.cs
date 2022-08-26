@@ -1,4 +1,5 @@
 using System;
+using TankU.PlayerObject;
 using UnityEngine;
 
 namespace TankU.PowerUP
@@ -6,20 +7,16 @@ namespace TankU.PowerUP
     public class BouncePowerUp : MonoBehaviour, IPickable
     {
         public GameObject bouncepowerFX;
-        public event Action<int, int> OnPlayerPicked;
+        public event Action<int, PowerUpController.Type> OnPlayerPicked;
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player1"))
-            {
-                OnPlayerPicked?.Invoke(0, 0);
-                gameObject.SetActive(false);
-            }
-            else if (other.CompareTag("Player2"))
-            {
-                OnPlayerPicked?.Invoke(1, 0);
-                gameObject.SetActive(false);
-            }
+            IBuffable _buffInterface = other.gameObject.GetComponent<IBuffable>();
+
+            if (_buffInterface == null) return;
+
+            OnPlayerPicked?.Invoke(_buffInterface.Index, PowerUpController.Type.Bounce);
+            gameObject.SetActive(false);
         }
 
    

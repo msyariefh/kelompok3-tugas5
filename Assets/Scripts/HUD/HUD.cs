@@ -23,7 +23,7 @@ namespace TankU.HUD
 
         [Header("Life")]
         [SerializeField]
-        private Slider P1slide, P2slide;
+        private Slider[] _playerHpSliders;
 
         [Header("Timer")]
         [SerializeField]
@@ -31,11 +31,9 @@ namespace TankU.HUD
 
         [Header("PowerUP")]
         [SerializeField]
-        private Image PowerUpP1;
-        [SerializeField]
-        private Image PowerUpP2;
+        private Image[] _playerPowerUpIndicators;
 
-        private int _playeroneHealth, _playertwoHealth;
+        private List<int> _playerHPs;
         private int _timer;
 
         private void OnEnable()
@@ -63,24 +61,18 @@ namespace TankU.HUD
 
         void Start()
         {
-            P1slide.GetComponent<Slider>().value = _playeroneHealth;
-            P2slide.GetComponent<Slider>().value = _playeroneHealth;
+            for (int i = 0; i < _playerHpSliders.Length; i++)
+            {
+                _playerHpSliders[i].maxValue = _playerHPs[i];
+                _playerHpSliders[i].value = _playerHPs[i];
+            }
 
         }
 
         void OnHealthPlayerChange(int _index, int _health)
         {
-            switch (_index)
-            {
-                case 0:
-                    _playeroneHealth = _health;
-                    P1slide.GetComponent<Slider>().value = _playeroneHealth;
-                    break;
-                case 1:
-                    _playertwoHealth = _health;
-                    P2slide.GetComponent<Slider>().value = _playertwoHealth;
-                    break;
-            }
+            _playerHPs[_index] = _health;
+            _playerHpSliders[_index].value = _health;
         }
 
         void OnTimerChange(int timechange)
@@ -98,32 +90,14 @@ namespace TankU.HUD
 
         void OnBouncePowerUp(int _index)
         {
-            switch (_index)
-            {
-                case 0:
-                    PowerUpP1.color = Color.white;
-                    PowerUpP1.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-                    break;
-                case 1:
-                    PowerUpP2.color = Color.white;
-                    PowerUpP2.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-                    break;
-            }
+            _playerPowerUpIndicators[_index].color = Color.white; ;
+            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         }
 
         void OnBouncePowerUpEnded(int _index)
         {
-            switch (_index)
-            {
-                case 0:
-                    PowerUpP1.color = new Color(255, 255, 255, 150);
-                    PowerUpP1.GetComponentInChildren<TextMeshProUGUI>().color = new Color(255, 255, 255, 67);
-                    break;
-                case 1:
-                    PowerUpP2.color = new Color(255, 255, 255, 150);
-                    PowerUpP2.GetComponentInChildren<TextMeshProUGUI>().color = new Color(255, 255, 255, 67);
-                    break;
-            }
+            _playerPowerUpIndicators[_index].color = new Color(255, 255, 255, 150);
+            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color(255, 255, 255, 67);
         }
 
 

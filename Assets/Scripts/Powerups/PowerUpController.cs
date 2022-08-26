@@ -9,6 +9,8 @@ namespace TankU.PowerUP
 {
     public class PowerUpController : MonoBehaviour, IPausable
     {
+        public enum Type { Bounce, Medic }
+
         [SerializeField] private CountdownController _countdownController;
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private int _maximumPowerUpInField;
@@ -73,14 +75,14 @@ namespace TankU.PowerUP
             _isGamePaused = false;
         }
 
-        private void OnPlayerPickedPowerUp(int _index, int _type)
+        private void OnPlayerPickedPowerUp(int _index, Type _type)
         {
             switch (_type)
             {
-                case 0:
+                case Type.Bounce:
                     OnBouncePowerUp?.Invoke(_index, _bouncePowerUpTime);
                     break;
-                case 1:
+                case Type.Medic:
                     OnMedicPowerUp?.Invoke(_index, _medicHealthAmount);
                     break;
             }
