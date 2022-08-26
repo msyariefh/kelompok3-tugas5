@@ -1,32 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using TankU.PlayerInput;
 using UnityEngine;
-//using TankU.PlayerInput;
 
 namespace TankU.Pause
 {
 
     public class Pause : MonoBehaviour
     {
-        //[SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private PauseController _pauseController;
         
         private void OnEnable()
         {
-          //  _playerInput.OnGamePause += OnGamePause;
+            _pauseController.OnGamePause += OnGamePaused;
+            _pauseController.OnGameResume += OnGameResumed;
         }
         private void OnDisable()
         {
-          //  _playerInput.OnGamePause -= OnGamePause;
+            _pauseController.OnGamePause -= OnGamePaused;
+            _pauseController.OnGameResume -= OnGameResumed;
         }
 
 
-        void OnGamePause(bool pause)
+        void OnGamePaused()
         {
-            if (pause)
-                transform.GetChild(0).gameObject.SetActive(true);
-
-            else if (!pause)
-                 transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+        void OnGameResumed()
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
         }
 
     }

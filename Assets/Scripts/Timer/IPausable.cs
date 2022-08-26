@@ -4,6 +4,6 @@ namespace TankU.Timer
     {
         public void OnGamePaused();
         public void OnGameResumed();
-        public void OnGameOver();
+        public void OnGameOver(int index);
     }
 }

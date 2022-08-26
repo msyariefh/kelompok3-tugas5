@@ -3,12 +3,14 @@ using UnityEngine;
 using TMPro;
 using System;
 using TankU.Tutorials;
+using TankU.PlayerInput;
 
 namespace TankU.Timer
 {
     public class CountdownController : MonoBehaviour, IPausable
     {
         [SerializeField] private Tutorial _tutorialController;
+        [SerializeField] private PauseController _pauseController;
         [SerializeField] private int _countdownNumber = 3;
         [SerializeField] private TMP_Text _countdownText;
         private bool _isGamePaused = false;
@@ -17,10 +19,14 @@ namespace TankU.Timer
         private void OnEnable()
         {
             _tutorialController.OnPlayerReady += OnPlayerReady;
+            _pauseController.OnGamePause += OnGamePaused;
+            _pauseController.OnGameResume += OnGameResumed;
         }
         private void OnDisable()
         {
             _tutorialController.OnPlayerReady -= OnPlayerReady;
+            _pauseController.OnGamePause -= OnGamePaused;
+            _pauseController.OnGameResume -= OnGameResumed;
         }
 
         public void OnPlayerReady()
@@ -54,7 +60,7 @@ namespace TankU.Timer
             gameObject.SetActive(false);
         }
 
-        public void OnGameOver()
+        public void OnGameOver(int index)
         {
             _isGamePaused = true;
         }

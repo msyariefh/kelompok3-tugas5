@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.PlayerInput;
+using TankU.PlayerObject;
 using UnityEngine;
 
 namespace TankU.Projectile
 {
     public class ProjectileController : MonoBehaviour
     {
+        [SerializeField] private PauseController _pauseController;
+        [SerializeField] private PlayerController[] _playerControllers;
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private int _damageGivenPerProjectile;
 
@@ -16,11 +20,17 @@ namespace TankU.Projectile
 
         private void OnEnable()
         {
-            
+            foreach(PlayerController _controller in _playerControllers)
+            {
+                _controller.OnPlayerShoot += OnPlayerShoot;
+            }
         }
         private void OnDisable()
         {
-            
+            foreach (PlayerController _controller in _playerControllers)
+            {
+                _controller.OnPlayerShoot -= OnPlayerShoot;
+            }
         }
 
         private void OnHitPlayer(int _index)
@@ -28,12 +38,13 @@ namespace TankU.Projectile
             OnPlayerHit?.Invoke(_index, _damageGivenPerProjectile);
         }
 
-        private void OnPlayerShoot(Vector3 _shootPosition, Quaternion _playerRotation)
+        private void OnPlayerShoot(Transform _player)
         {
             GameObject _projectileReady = GetObjectFromPool(_projectilePool);
             if(_projectileReady == null)
             {
-                _projectileReady = Instantiate(_projectilePrefab, _shootPosition, _playerRotation);
+                _projectileReady = Instantiate(_projectilePrefab, _player.position, _player.rotation);
+                _projectileReady.GetComponent<RocketController>().SetPauseController(_pauseController);
                 _projectileReady.SetActive(true);
                 IHitable _hitableInterface = _projectileReady.GetComponent<IHitable>();
                 _hitableInterface.OnHitPlayer += OnHitPlayer;
@@ -41,8 +52,8 @@ namespace TankU.Projectile
             }
             else
             {
-                _projectileReady.transform.position = _shootPosition;
-                _projectileReady.transform.rotation = _playerRotation;
+                _projectileReady.transform.position = _player.position;
+                _projectileReady.transform.rotation = _player.rotation;
                 _projectileReady.SetActive(true);
             }
         }

@@ -1,4 +1,5 @@
 using System.Collections;
+using TankU.PlayerInput;
 using TankU.Timer;
 using UnityEngine;
 
@@ -6,10 +7,28 @@ namespace TankU.Bomb
 {
     public class Bomb : MonoBehaviour, IPausable
     {
+        private PauseController _pauseController;
         [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private LayerMask levelMask;
         [SerializeField] private float _timeBeforeExplode; 
         private bool _isGamePaused = false;
+
+        public void SetPauseController(PauseController _controller)
+        {
+            _pauseController = _controller;
+        }
+
+        private void OnEnable()
+        {
+            _pauseController.OnGamePause += OnGamePaused;
+            _pauseController.OnGameResume += OnGameResumed;
+        }
+
+        private void OnDisable()
+        {
+            _pauseController.OnGamePause -= OnGamePaused;
+            _pauseController.OnGameResume -= OnGameResumed;
+        }
 
         void Start()
         {
@@ -83,7 +102,7 @@ namespace TankU.Bomb
             _isGamePaused = false;
         }
 
-        public void OnGameOver()
+        public void OnGameOver(int index)
         {
             _isGamePaused = true;
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.PlayerInput;
 using TankU.Timer;
 using UnityEngine;
 
@@ -9,14 +10,15 @@ namespace TankU.PowerUP
     public class PowerUpController : MonoBehaviour, IPausable
     {
         [SerializeField] private CountdownController _countdownController;
+        [SerializeField] private PauseController _pauseController;
         [SerializeField] private int _maximumPowerUpInField;
         [SerializeField] private GameObject _medicPowerUpPrefab;
         [SerializeField] private GameObject _bouncePowerUpPrefab;
         [SerializeField] private float _spawnCooldown;
         [SerializeField] private float _zPositionToSpawn;
-        [SerializeField] private float _bouncePowerUpTime;
+        [SerializeField] private int _bouncePowerUpTime;
         [SerializeField] private int _medicHealthAmount;
-        public event Action<int, float> OnBouncePowerUp;
+        public event Action<int, int> OnBouncePowerUp;
         public event Action<int, int> OnMedicPowerUp;
 
         private List<GameObject> _medicPowerUpPool;
@@ -40,11 +42,15 @@ namespace TankU.PowerUP
         private void OnEnable()
         {
             _countdownController.OnCountdownEnded += OnCountdownEnded;
+            _pauseController.OnGamePause += OnGamePaused;
+            _pauseController.OnGameResume += OnGameResumed;
         }
 
         private void OnDisable()
         {
             _countdownController.OnCountdownEnded -= OnCountdownEnded;
+            _pauseController.OnGamePause -= OnGamePaused;
+            _pauseController.OnGameResume -= OnGameResumed;
         }
 
         private void OnCountdownEnded()
@@ -52,12 +58,7 @@ namespace TankU.PowerUP
 
         }
 
-        private void PowerUpStart()
-        {
-
-        }
-
-        public void OnGameOver()
+        public void OnGameOver(int index)
         {
             _isGamePaused = true;
         }
