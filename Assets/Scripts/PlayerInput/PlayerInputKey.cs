@@ -14,6 +14,8 @@ namespace TankU.PlayerInput
         [SerializeField] private KeyCode _moveRight;
         [SerializeField] private KeyCode _rotateRight;
         [SerializeField] private KeyCode _rotateLeft;
+        [SerializeField] private KeyCode _shoot;
+        [SerializeField] private KeyCode _plantBomb;
 
         public KeyCode moveForward => _moveForward;
         public KeyCode moveBackward => _moveBackward;
@@ -21,6 +23,9 @@ namespace TankU.PlayerInput
         public KeyCode moveRight => _moveRight;
         public KeyCode rotateRight => _rotateRight;
         public KeyCode rotateLeft => _rotateLeft;
+        public KeyCode shoot => _shoot;
+        public KeyCode plantBomb => _plantBomb;
+
     }
 }
 
