@@ -38,14 +38,12 @@ namespace TankU.Projectile
             OnPlayerHit?.Invoke(_index, _damageGivenPerProjectile);
         }
 
-        private void OnPlayerShoot(Transform _player)
+        private void OnPlayerShoot(bool _isPoweredUp, Transform _player, int _index)
         {
             GameObject _projectileReady = GetObjectFromPool(_projectilePool);
             if(_projectileReady == null)
             {
                 _projectileReady = Instantiate(_projectilePrefab, _player.position, _player.rotation);
-                _projectileReady.GetComponent<RocketController>().SetPauseController(_pauseController);
-                _projectileReady.SetActive(true);
                 IHitable _hitableInterface = _projectileReady.GetComponent<IHitable>();
                 _hitableInterface.OnHitPlayer += OnHitPlayer;
                 _projectilePool.Add(_projectileReady);
@@ -54,8 +52,11 @@ namespace TankU.Projectile
             {
                 _projectileReady.transform.position = _player.position;
                 _projectileReady.transform.rotation = _player.rotation;
-                _projectileReady.SetActive(true);
             }
+
+            _projectileReady.GetComponent<RocketController>().SetController(_pauseController, _playerControllers[_index]);
+            _projectileReady.GetComponent<RocketController>()._isPoweredUp = _isPoweredUp;
+            _projectileReady.SetActive(true);
         }
         private GameObject GetObjectFromPool(List<GameObject> _pool)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TankU.HPSystem;
 
 namespace TankU.GameOver
 {
@@ -12,7 +12,7 @@ namespace TankU.GameOver
     {
         [SerializeField] private TextMeshProUGUI _winner;
         [SerializeField] private Button MainMenu, Retry;
-    //    [SerializeField] private HPController _hpController;
+        [SerializeField] private HPController _hpController;
 
         private void Start()
         {
@@ -24,12 +24,12 @@ namespace TankU.GameOver
 
         private void OnEnable()
         {
-  //          _hpController.OnGameOver += OnGameOver;   
+            _hpController.OnGameOver += OnGameOver;
         }
 
         private void OnDisable()
         {
-    //        _hpController.OnGameOver += OnGameOver;
+            _hpController.OnGameOver += OnGameOver;
         }
 
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TankU.PlayerInput;
+using TankU.PlayerObject;
 using TankU.Timer;
 using UnityEngine;
 
@@ -15,9 +16,12 @@ namespace TankU.Projectile
         //private bool exploded = false;
         [SerializeField] private GameObject explosionPrefab;
         private PauseController _pauseController;
-        public void SetPauseController(PauseController _controller)
+        private PlayerController _playerController;
+        public bool _isPoweredUp { get; set; } = false;
+        public void SetController(PauseController _pause, PlayerController _player)
         {
-            _pauseController = _controller;
+            _pauseController = _pause;
+            _playerController = _player;
         }
 
         public event Action<int> OnHitPlayer;
@@ -26,11 +30,17 @@ namespace TankU.Projectile
         {
             _pauseController.OnGamePause += OnGamePaused;
             _pauseController.OnGameResume += OnGameResumed;
+            _playerController.OnPowerUpEnded += OnPowerUpEnded;
         }
         private void OnDisable()
         {
             _pauseController.OnGamePause -= OnGamePaused;
             _pauseController.OnGameResume -= OnGameResumed;
+            _playerController.OnPowerUpEnded -= OnPowerUpEnded;
+        }
+        private void OnPowerUpEnded(int _index)
+        {
+            // Explode?
         }
 
         public void OnGameOver(int index)

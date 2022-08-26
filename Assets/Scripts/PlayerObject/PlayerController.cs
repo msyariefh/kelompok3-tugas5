@@ -23,7 +23,7 @@ namespace TankU.PlayerObject
         private Transform tankHead;
 
         private CharacterController controller;
-        public event Action<Transform> OnPlayerShoot;
+        public event Action<bool, Transform, int> OnPlayerShoot;
         public event Action<Transform> OnBombPlanted;
         public event Action<int> OnPowerUpEnded;
         public event Action<int> OnPowerUpStarted;
@@ -58,7 +58,7 @@ namespace TankU.PlayerObject
         }
         private void Update()
         {
-            if (inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(transform);
+            if (inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(_powerUpTimeLeft > 0, transform, _playerIndex);
             if (inputController.BombPlantInput()) OnBombPlanted?.Invoke(transform);
             if (_powerUpTimeLeft < 1) return;
             else
