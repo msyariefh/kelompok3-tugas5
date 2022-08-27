@@ -69,17 +69,17 @@ namespace TankU.Bomb
 
         private IEnumerator CreateExplosions(Vector3 direction)
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 85; i++)
             {
                 //gives information about what the raycast hits
                 RaycastHit hit;
 
                 //Raycast in the specified direction at i distance, because of the layer mask it'll only hit blocks, not players or bombs
-                Physics.Raycast(transform.position + new Vector3(0, .5f, 0), direction, out hit, i, levelMask);
+                Physics.Raycast(transform.position + new Vector3(0, .5f, 0), direction, out hit, i * 5, levelMask);
 
                 if (!hit.collider)
                 {
-                    Instantiate(explosionPrefab, transform.position + (i * direction), explosionPrefab.transform.rotation);
+                    Instantiate(explosionPrefab, transform.position + ( 5 *i * direction), explosionPrefab.transform.rotation);
                 }
 
                 else

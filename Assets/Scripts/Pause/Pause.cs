@@ -7,6 +7,7 @@ namespace TankU.Pause
     public class Pause : MonoBehaviour
     {
         [SerializeField] private PauseController _pauseController;
+        [SerializeField] private GameObject _pausePopUp;
         
         private void OnEnable()
         {
@@ -22,11 +23,13 @@ namespace TankU.Pause
 
         void OnGamePaused()
         {
-            transform.GetChild(0).gameObject.SetActive(true);
+            _pausePopUp.SetActive(true);
+            //transform.GetChild(0).gameObject.SetActive(true);
         }
         void OnGameResumed()
         {
-            transform.GetChild(0).gameObject.SetActive(false);
+            _pausePopUp.SetActive(false);
+            //transform.GetChild(0).gameObject.SetActive(false);
         }
 
     }

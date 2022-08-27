@@ -54,7 +54,6 @@ namespace TankU.Timer
         {
             do
             {
-                print(_gameLimitInSecond);
                 OnTimerChange?.Invoke(_gameLimitInSecond);
                 yield return new WaitUntil(() => !_isGamePaused);
                 yield return new WaitForSeconds(1f);

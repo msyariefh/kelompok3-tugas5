@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 456380607162833523}
   - component: {fileID: 456380607162833525}
   - component: {fileID: 456380607162833524}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 456380607480359332}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 456380607610737835}
   - component: {fileID: 456380607610737837}
   - component: {fileID: 456380607610737836}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 456380608020095755}
   - component: {fileID: 456380608020095757}
   - component: {fileID: 456380608020095756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,11 +326,18 @@ GameObject:
   - component: {fileID: 456380608583239238}
   - component: {fileID: 456380608583239237}
   - component: {fileID: 456380608583239235}
+<<<<<<< Updated upstream
   - component: {fileID: 456380608583239234}
   - component: {fileID: 456380608583239239}
   m_Layer: 0
+=======
+  - component: {fileID: 2887920619196853169}
+  - component: {fileID: 5392172948262636686}
+  - component: {fileID: 5195934361662060887}
+  m_Layer: 3
+>>>>>>> Stashed changes
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,6 +388,7 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456380608583239233}
+<<<<<<< Updated upstream
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -391,6 +399,20 @@ Rigidbody:
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &456380608583239239
+=======
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d15f5b9a032a64fba3b95b7653493c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputScriptable: {fileID: 0}
+  countdownController: {fileID: 0}
+  hpController: {fileID: 0}
+  _pauseController: {fileID: 0}
+  _playerShootInterval: 1
+  _playerPlantBombInterval: 2
+--- !u!114 &5392172948262636686
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,12 +424,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9659fd2460feb24bbc52774f90ef101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   _tbody: {fileID: 456380607480359331}
   _thead: {fileID: 456380607162833522}
   _GroundCheck: {fileID: 456380608016942334}
   layer:
     serializedVersion: 2
     m_Bits: 64
+=======
+  _playerIndex: 0
+  _powerUpController: {fileID: 0}
+  _pauseController: {fileID: 0}
+  moveSpeed: 30
+  rotateSpeed: 5
+  inputController: {fileID: 2887920619196853169}
+  tankHead: {fileID: 456380607162833523}
+  _tankBody: {fileID: 456380607480359332}
+  _shootPos: {fileID: 46661630876287104}
+--- !u!143 &5195934361662060887
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456380608583239233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 1.6
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+>>>>>>> Stashed changes
 --- !u!1 &456380608780365683
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +471,7 @@ GameObject:
   - component: {fileID: 456380608780365684}
   - component: {fileID: 456380608780365686}
   - component: {fileID: 456380608780365685}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +554,7 @@ GameObject:
   - component: {fileID: 456380609085853275}
   - component: {fileID: 456380609085853277}
   - component: {fileID: 456380609085853276}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,3 +626,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1 &2661271041516117207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 46661630876287104}
+  m_Layer: 3
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &46661630876287104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2661271041516117207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 456380607162833523}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> Stashed changes

@@ -43,11 +43,12 @@ namespace TankU.HPSystem
 
         private void OnPlayerHit(int _playerIndex, int _damage)
         {
-            if(_playerHPs[_playerIndex] - _damage <= 0)
+            if(_playerHPs[_playerIndex] - _damage < 1)
             {
                 _playerHPs[_playerIndex] = 0;
                 OnPlayerHealthChange?.Invoke(_playerIndex, _playerHPs[_playerIndex]);
                 OnGameOver?.Invoke(_playerIndex + 1);
+                _timerController.GetComponent<IPausable>().OnGameOver(0);
                 return;
             }
             _playerHPs[_playerIndex] -= _damage;
@@ -56,20 +57,31 @@ namespace TankU.HPSystem
 
         private void OnMedicPowerUp(int _playerIndex, int _health)
         {
-            _playerHPs[_playerIndex] += _health;
+            if (_playerHPs[_playerIndex] + _health > _maximumPlayerHP)
+            {
+                _playerHPs[_playerIndex] = _maximumPlayerHP;
+            }
+            else
+            {
+                _playerHPs[_playerIndex] += _health;
+            }
+            
             OnPlayerHealthChange?.Invoke(_playerIndex, _playerHPs[_playerIndex]);
         }
 
         private void OnTimesUp()
         {
-            List<int> _possibleTie = new List<int>();
+            List<int> _possibleTie = new();
             var _mostHP = _playerHPs.Max();
+
             int _winner = -1;
             do
             {
-                _winner = _playerHPs.FindIndex(a => a == _mostHP);
+                _winner = _playerHPs.IndexOf(_mostHP);
+                if (_winner == -1) break;
                 _possibleTie.Add(_winner);
                 _playerHPs.RemoveAt(_winner);
+
             } while (_winner != -1);
 
             if (_possibleTie.Count > 1)

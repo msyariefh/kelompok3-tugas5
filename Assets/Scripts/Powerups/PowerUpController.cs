@@ -97,9 +97,9 @@ namespace TankU.PowerUP
             float _yPos = 0;
             do
             {
-                _xPos = UnityEngine.Random.Range(-10f, 10f);
-                _yPos = UnityEngine.Random.Range(-10f, 10f);
-            } while (CheckSpawnPosition(_xPos, _yPos));
+                _xPos = UnityEngine.Random.Range(-85f, 85f);
+                _zPos = UnityEngine.Random.Range(-85f, 85f);
+            } while (CheckSpawnPosition(_xPos, _zPos));
 
             yield return new WaitUntil(() => !_isGamePaused);
             yield return new WaitForSeconds(_spawnCooldown);

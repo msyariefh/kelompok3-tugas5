@@ -54,14 +54,12 @@ namespace TankU.GameOver
 
         void GoMainMenu() 
         {
-            Debug.Log("MbOH");
-//            SceneManager.LoadScene("MainMenu")
+            SceneManager.LoadScene("Main Menu");
         }
 
         void GoRetry() 
         {
-            Debug.Log("Ya Ndak Tau Kok Tanya Saya");
-  //          Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene("Gameplay");
         }
     }
 }
