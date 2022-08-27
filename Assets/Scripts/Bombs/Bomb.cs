@@ -69,7 +69,7 @@ namespace TankU.Bomb
 
         private IEnumerator CreateExplosions(Vector3 direction)
         {
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 10; i++)
             {
                 //gives information about what the raycast hits
                 RaycastHit hit;
@@ -88,7 +88,7 @@ namespace TankU.Bomb
                 }
 
                 //Wait 50 milliseconds before checking the next location
-                yield return new WaitForSeconds(.05f);
+                yield return new WaitForSeconds(.005f);
             }
         }
 
