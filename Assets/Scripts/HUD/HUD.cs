@@ -16,6 +16,7 @@ namespace TankU.HUD
         [SerializeField] private TimerController _timerController;
         [SerializeField] private HPController _hpController;
         [SerializeField] private PlayerController[] _playerControllers;
+        [SerializeField] private CountdownController _countdownController;
 
         [Header("Pop-Up")]
         [SerializeField]
@@ -45,6 +46,8 @@ namespace TankU.HUD
                 _controller.OnPowerUpStarted += OnBouncePowerUp;
                 _controller.OnPowerUpEnded += OnBouncePowerUpEnded;
             }
+            _hpController.OnPlayerHealthInit += OnPlayerHealthInit;
+            _countdownController.OnCountdownEnded += OnCountdownEnded;
 
         }
 
@@ -57,6 +60,14 @@ namespace TankU.HUD
                 _controller.OnPowerUpStarted -= OnBouncePowerUp;
                 _controller.OnPowerUpEnded -= OnBouncePowerUpEnded;
             }
+            _hpController.OnPlayerHealthInit -= OnPlayerHealthInit;
+            _countdownController.OnCountdownEnded -= OnCountdownEnded;
+        }
+
+        private void OnCountdownEnded()
+        {
+            print("Aktif");
+            HUDPopup.SetActive(true);
         }
 
         void Start()

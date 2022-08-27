@@ -68,6 +68,7 @@ namespace TankU.PlayerInput
 
         public bool PlayerShootInput()
         {
+            if (_isGamePaused) return false;
             if (_isInShootCooldown) return false;
             if (Input.GetKeyDown(inputScriptable.InputKeys.shoot))
             {
@@ -80,6 +81,7 @@ namespace TankU.PlayerInput
 
         public bool BombPlantInput()
         {
+            if (_isGamePaused) return false;
             if (_isInPlantBombCooldown) return false;
             if (Input.GetKeyDown(inputScriptable.InputKeys.plantBomb))
             {

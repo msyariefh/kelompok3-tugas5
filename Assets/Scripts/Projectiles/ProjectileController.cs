@@ -48,11 +48,9 @@ namespace TankU.Projectile
                 _hitableInterface.OnHitPlayer += OnHitPlayer;
                 _projectilePool.Add(_projectileReady);
             }
-            else
-            {
-                _projectileReady.transform.position = _player.position;
-                _projectileReady.transform.rotation = _player.rotation;
-            }
+            _projectileReady.transform.position = _player.position;
+            _projectileReady.GetComponent<RocketController>().ChangeRotation(_player);
+
 
             _projectileReady.GetComponent<RocketController>().SetController(_pauseController, _playerControllers[_index]);
             _projectileReady.GetComponent<RocketController>()._isPoweredUp = _isPoweredUp;

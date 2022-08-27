@@ -16,16 +16,17 @@ namespace TankU.PlayerInput
 
         private void Update()
         {
-            if (_isGamePaused) return;
             if (Input.GetKeyDown(_pauseKey))
             {
                 if (_isGamePaused)
                 {
+                    print("resume");
                     _isGamePaused = false;
                     OnGameResume?.Invoke();
                 }
                 else
                 {
+                    print("pause");
                     _isGamePaused = true;
                     OnGamePause?.Invoke();
                 }
