@@ -19,3 +19,6 @@ MonoBehaviour:
     _moveRight: 275
     _rotateRight: 44
     _rotateLeft: 46
+    _shoot: 303
+    _plantBomb: 13
+  _pauseInput: 0

@@ -26,6 +26,7 @@ namespace TankU.MainMenu
         private void OnPlayButtonClicked()
         {
             // Change to gameplay scene
+            SceneManager.LoadScene("Gameplay");
         }
 
         private void OnSettingsButtonClicked()

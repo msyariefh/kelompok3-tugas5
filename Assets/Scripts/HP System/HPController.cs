@@ -18,6 +18,7 @@ namespace TankU.HPSystem
 
         public event Action<int> OnGameOver;
         public event Action<int, int> OnPlayerHealthChange;
+        public event Action<List<int>> OnPlayerHealthInit;
         private List<int> _playerHPs = new();
 
         private void Start()
@@ -26,6 +27,7 @@ namespace TankU.HPSystem
             {
                 _playerHPs.Add(_maximumPlayerHP);
             }
+            OnPlayerHealthInit?.Invoke(_playerHPs);
         }
 
         private void OnEnable()

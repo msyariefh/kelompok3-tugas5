@@ -55,7 +55,7 @@ namespace TankU.PlayerInput
             if (Input.GetKey(inputScriptable.InputKeys.moveRight)) return Vector3.right;
             if (Input.GetKey(inputScriptable.InputKeys.moveForward)) return Vector3.forward;
             if (Input.GetKey(inputScriptable.InputKeys.moveBackward)) return Vector3.back;
-            else return Vector3.zero;
+            return Vector3.zero;
         }
 
         public Vector3 ProcessRotateInput()
@@ -63,7 +63,7 @@ namespace TankU.PlayerInput
             if (_isGamePaused) return Vector3.zero;
             if (Input.GetKey(inputScriptable.InputKeys.rotateLeft)) return new Vector3(0, -1, 0);
             if (Input.GetKey(inputScriptable.InputKeys.rotateRight)) return new Vector3(0, 1, 0);
-            else return Vector3.zero;
+            return Vector3.zero;
         }
 
         public bool PlayerShootInput()

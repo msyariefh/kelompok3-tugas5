@@ -8,36 +8,58 @@ namespace TankU.ColorSelection
     public class ColorSelector : MonoBehaviour
     {
         [SerializeField]
-        private GameObject colorView;
+        private Button btnNext;
+        [SerializeField] 
+        GameObject _tutorialPanel;
         [SerializeField]
-        private Button btnPick;
+        private GameObject[] colorView;
         [SerializeField]
-        private GameObject player;
+        private Button[] btnPicks;
+        [SerializeField]
+        private Material[] _playerMaterials;
         [SerializeField]
         private Color[] colors;
 
-        private Image colorImage;
-        private Renderer cubeRenderer;
-
-        private int colorIndex;
+        private int[] _indexSelected;
 
         private void Awake()
         {
-            cubeRenderer = player.GetComponent<Renderer>();
-            colorImage = colorView.GetComponent<Image>();
-            btnPick.onClick.AddListener(ChangeMaterial);
+            btnNext.onClick.AddListener(OnSelection);
+            for (int i = 0; i < btnPicks.Length; i++)
+            {
+                int x = i;
+                btnPicks[i].onClick.AddListener(delegate { ChangeMaterial(x); });
+            }
+            _indexSelected = new int[_playerMaterials.Length];
+            for (int i = 0; i < _indexSelected.Length; i++)
+            {
+                _indexSelected[i] = 0;
+                colorView[i].GetComponent<Image>().color = colors[0];
+            }
         }
 
-        public void ChangeMaterial()
+        public void ChangeMaterial(int _index)
         {
-            colorIndex++;
-            if(colorIndex>3)
+            if(_indexSelected[_index] == colors.Length - 1)
             {
-                colorIndex = 0;
+                _indexSelected[_index] = 0;
+            }
+            else
+            {
+                _indexSelected[_index]++;
+            }
+            colorView[_index].GetComponent<Image>().color = colors[_indexSelected[_index]];
+        }
+
+        private void OnSelection()
+        {
+            for(int i = 0; i < _playerMaterials.Length; i++)
+            {
+                _playerMaterials[i].color = colors[_indexSelected[i]];
             }
 
-            colorImage.color = colors[colorIndex];
-            cubeRenderer.material.color = colors[colorIndex];
+            _tutorialPanel.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }

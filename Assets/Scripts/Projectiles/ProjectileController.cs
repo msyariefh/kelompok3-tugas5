@@ -40,19 +40,18 @@ namespace TankU.Projectile
 
         private void OnPlayerShoot(bool _isPoweredUp, Transform _player, int _index)
         {
+            print(_index + " Shoot");
             GameObject _projectileReady = GetObjectFromPool(_projectilePool);
             if(_projectileReady == null)
             {
-                _projectileReady = Instantiate(_projectilePrefab, _player.position, _player.rotation);
+                _projectileReady = Instantiate(_projectilePrefab);
                 IHitable _hitableInterface = _projectileReady.GetComponent<IHitable>();
                 _hitableInterface.OnHitPlayer += OnHitPlayer;
                 _projectilePool.Add(_projectileReady);
             }
-            else
-            {
-                _projectileReady.transform.position = _player.position;
-                _projectileReady.transform.rotation = _player.rotation;
-            }
+
+            _projectileReady.transform.SetPositionAndRotation(_player.position, _player.rotation);
+
 
             _projectileReady.GetComponent<RocketController>().SetController(_pauseController, _playerControllers[_index]);
             _projectileReady.GetComponent<RocketController>()._isPoweredUp = _isPoweredUp;

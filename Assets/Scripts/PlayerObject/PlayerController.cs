@@ -21,8 +21,10 @@ namespace TankU.PlayerObject
         private InputController inputController;
         [SerializeField]
         private Transform tankHead;
+        [SerializeField] private Transform _shootPos;
 
         private CharacterController controller;
+        private Rigidbody _rigidbody;
         public event Action<bool, Transform, int> OnPlayerShoot;
         public event Action<Transform> OnBombPlanted;
         public event Action<int> OnPowerUpEnded;
@@ -56,11 +58,13 @@ namespace TankU.PlayerObject
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
+            //_rigidbody = GetComponent<Rigidbody>();
 
         }
         private void Update()
         {
-            if (inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(_powerUpTimeLeft > 0, transform, _playerIndex);
+            _shootPos.rotation = tankHead.rotation;
+            if (inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(_powerUpTimeLeft > 0, _shootPos, _playerIndex);
             if (inputController.BombPlantInput()) OnBombPlanted?.Invoke(transform);
             if (_powerUpTimeLeft < 1) return;
             else
@@ -75,7 +79,9 @@ namespace TankU.PlayerObject
         {
             controller.Move(moveSpeed * Time.fixedDeltaTime * inputController.ProcessMoveInput());
             tankHead.Rotate(inputController.ProcessRotateInput() * rotateSpeed);
-            
+
+            //_rigidbody.velocity = (moveSpeed * Time.fixedDeltaTime * inputController.ProcessMoveInput());
+
         }
 
         public void OnGamePaused()

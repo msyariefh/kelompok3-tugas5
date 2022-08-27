@@ -63,6 +63,7 @@ namespace TankU.Projectile
             rb = GetComponent<Rigidbody>();
             _speedInitial = speed;
             rb.velocity = speed * transform.forward;
+            print(transform.position + " " + transform.rotation.ToString());
         }
 
         private void OnTriggerEnter(Collider other)

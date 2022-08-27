@@ -6,7 +6,7 @@ namespace TankU.PowerUP
 {
     public class MedicPowerUp : MonoBehaviour, IPickable
     {
-        public GameObject medicpowerFX;
+        //public GameObject medicpowerFX;
 
         public event Action<int, PowerUpController.Type> OnPlayerPicked;
 
