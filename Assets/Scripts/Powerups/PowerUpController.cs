@@ -17,7 +17,7 @@ namespace TankU.PowerUP
         [SerializeField] private GameObject _medicPowerUpPrefab;
         [SerializeField] private GameObject _bouncePowerUpPrefab;
         [SerializeField] private float _spawnCooldown;
-        [SerializeField] private float _zPositionToSpawn;
+        [SerializeField] private float _yPositionToSpawn;
         [SerializeField] private int _bouncePowerUpTime;
         [SerializeField] private int _medicHealthAmount;
         public event Action<int, int> OnBouncePowerUp;
@@ -94,7 +94,7 @@ namespace TankU.PowerUP
         {
             _currentPowerUpInField++;
             float _xPos = 0;
-            float _yPos = 0;
+            float _zPos = 0;
             do
             {
                 _xPos = UnityEngine.Random.Range(-85f, 85f);
@@ -114,7 +114,7 @@ namespace TankU.PowerUP
                     if (_objectFromPool == null)
                     {
                         _objectFromPool = Instantiate(_bouncePowerUpPrefab,
-                            new Vector3(_xPos, _yPos, _zPositionToSpawn), Quaternion.identity);
+                            new Vector3(_xPos, _yPositionToSpawn, _zPos), Quaternion.identity);
                         _pickableInterface = _objectFromPool.GetComponent<IPickable>();
                         _pickableInterface.OnPlayerPicked += OnPlayerPickedPowerUp;
                         _objectFromPool.SetActive(true);
@@ -122,7 +122,7 @@ namespace TankU.PowerUP
                     }
                     else
                     {
-                        _objectFromPool.transform.position = new Vector3(_xPos, _yPos, _zPositionToSpawn);
+                        _objectFromPool.transform.position = new Vector3(_xPos, _yPositionToSpawn, _zPos);
                         _objectFromPool.SetActive(true);
                     }
                     break;
@@ -131,7 +131,7 @@ namespace TankU.PowerUP
                     if (_objectFromPool == null)
                     {
                         _objectFromPool = Instantiate(_medicPowerUpPrefab,
-                            new Vector3(_xPos, _yPos, _zPositionToSpawn), Quaternion.identity);
+                            new Vector3(_xPos, _yPositionToSpawn, _zPos), Quaternion.identity);
                         _pickableInterface = _objectFromPool.GetComponent<IPickable>();
                         _pickableInterface.OnPlayerPicked += OnPlayerPickedPowerUp;
                         _objectFromPool.SetActive(true);
@@ -139,7 +139,7 @@ namespace TankU.PowerUP
                     }
                     else
                     {
-                        _objectFromPool.transform.position = new Vector3(_xPos, _yPos, _zPositionToSpawn);
+                        _objectFromPool.transform.position = new Vector3(_xPos, _yPositionToSpawn, _zPos);
                         _objectFromPool.SetActive(true);
                     }
                     break;
@@ -151,9 +151,9 @@ namespace TankU.PowerUP
             return _pool.Find(go => !go.activeInHierarchy);
         }
 
-        private bool CheckSpawnPosition(float _x, float _y)
+        private bool CheckSpawnPosition(float _x, float _z)
         {
-            Collider[] colls = Physics.OverlapSphere(new Vector3(_x, _y, _zPositionToSpawn),
+            Collider[] colls = Physics.OverlapSphere(new Vector3(_x, _yPositionToSpawn, _z),
                 RADIUS_FROM_OBSTACLE);
             if (colls.Length > 0) return true;
             else return false;

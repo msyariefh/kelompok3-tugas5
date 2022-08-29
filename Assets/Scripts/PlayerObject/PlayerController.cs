@@ -26,6 +26,7 @@ namespace TankU.PlayerObject
         [SerializeField] private Transform _shootPos;
 
         private CharacterController controller;
+        private Rigidbody _rigidbody;
         public event Action<bool, Transform, int> OnPlayerShoot;
         public event Action<Transform> OnBombPlanted;
         public event Action<int> OnPowerUpEnded;
@@ -60,6 +61,7 @@ namespace TankU.PlayerObject
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
+            //_rigidbody = GetComponent<Rigidbody>();
 
         }
         private void Update()

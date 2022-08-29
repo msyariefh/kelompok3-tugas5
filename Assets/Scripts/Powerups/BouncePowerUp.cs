@@ -6,7 +6,7 @@ namespace TankU.PowerUP
 {
     public class BouncePowerUp : MonoBehaviour, IPickable
     {
-        public GameObject bouncepowerFX;
+        //public GameObject bouncepowerFX;
         public event Action<int, PowerUpController.Type> OnPlayerPicked;
 
         private void OnTriggerEnter(Collider other)

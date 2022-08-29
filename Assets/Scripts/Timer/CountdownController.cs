@@ -31,6 +31,7 @@ namespace TankU.Timer
 
         public void OnPlayerReady()
         {
+            print("ready");
             //gameObject.SetActive(true);
             StartCoroutine(CountdownStart());
         }

@@ -11,6 +11,7 @@ namespace TankU.ColorSelection
     {
         [SerializeField]
         private Button btnNext;
+        [SerializeField] GameObject _tutorialPanel;
 
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace TankU.ColorSelection
 
         private void OnSelection()
         {
+            _tutorialPanel.SetActive(true);
             gameObject.SetActive(false);
         }
     }

@@ -15,11 +15,11 @@ MonoBehaviour:
   _mainMenuBGM: MainMenuBGM
   _sounds:
   - _name: MainMenuBGM
-    _audioClip: {fileID: 8300000, guid: 3b8bb7e11525f194c9f048cf170b50e3, type: 3}
+    _audioClip: {fileID: 8300000, guid: 8b90e5dd33023ab428aa2d95a4eec5d1, type: 3}
     _isBGM: 1
     _audioMixerGroup: {fileID: 626758397227149968, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
   - _name: GameplayBGM
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 852602ed4c6ff4d458c9d34b563d9b19, type: 3}
     _isBGM: 1
     _audioMixerGroup: {fileID: 626758397227149968, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
   - _name: SFX

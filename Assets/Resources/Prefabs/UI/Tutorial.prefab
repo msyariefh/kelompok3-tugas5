@@ -988,13 +988,14 @@ GameObject:
   - component: {fileID: 9149968369058077436}
   - component: {fileID: 9149968369058077438}
   - component: {fileID: 9149968369058077439}
+  - component: {fileID: 933288810834368566}
   m_Layer: 2
   m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9149968369058077436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1056,6 +1057,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &933288810834368566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9149968369058077437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9469161898281284eb53b1dfc5e353b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _next: {fileID: 9149968368158004926}
+  _prev: {fileID: 9149968369127193264}
+  _tutPopUp: {fileID: 9149968369058077437}
+  _tutorial: {fileID: 9149968369707390480}
 --- !u!1 &9149968369074941013
 GameObject:
   m_ObjectHideFlags: 0

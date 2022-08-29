@@ -34,7 +34,7 @@ namespace TankU.HUD
         [SerializeField]
         private Image[] _playerPowerUpIndicators;
 
-        private List<int> _playerHPs;
+        private List<int> _playerHPs = new();
         private int _timer;
 
         private void OnEnable()
@@ -59,6 +59,7 @@ namespace TankU.HUD
             {
                 _controller.OnPowerUpStarted -= OnBouncePowerUp;
                 _controller.OnPowerUpEnded -= OnBouncePowerUpEnded;
+                _hpController.OnPlayerHealthInit -= OnPlayerHealthInit;
             }
             _hpController.OnPlayerHealthInit -= OnPlayerHealthInit;
             _countdownController.OnCountdownEnded -= OnCountdownEnded;
@@ -66,18 +67,17 @@ namespace TankU.HUD
 
         private void OnCountdownEnded()
         {
-            print("Aktif");
             HUDPopup.SetActive(true);
         }
 
-        void Start()
+        private void OnPlayerHealthInit(List<int> _healths)
         {
+            _playerHPs = _healths;
             for (int i = 0; i < _playerHpSliders.Length; i++)
             {
                 _playerHpSliders[i].maxValue = _playerHPs[i];
                 _playerHpSliders[i].value = _playerHPs[i];
             }
-
         }
 
         void OnHealthPlayerChange(int _index, int _health)
