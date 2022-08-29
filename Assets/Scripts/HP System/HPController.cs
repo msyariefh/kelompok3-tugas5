@@ -49,7 +49,7 @@ namespace TankU.HPSystem
             {
                 _playerHPs[_playerIndex] = 0;
                 OnPlayerHealthChange?.Invoke(_playerIndex, _playerHPs[_playerIndex]);
-                OnGameOver?.Invoke(_playerIndex + 1);
+                InvokeGameOverCondition();
                 _timerController.GetComponent<IPausable>().OnGameOver(0);
                 return;
             }
@@ -72,6 +72,10 @@ namespace TankU.HPSystem
         }
 
         private void OnTimesUp()
+        {
+            InvokeGameOverCondition();
+        }
+        private void InvokeGameOverCondition()
         {
             List<int> _possibleTie = new();
             var _mostHP = _playerHPs.Max();

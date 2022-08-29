@@ -110,6 +110,7 @@ namespace TankU.PlayerObject
             yield return new WaitUntil(() => !_isGamePaused);
             yield return new WaitForSeconds(1f);
             _powerUpTimeLeft--;
+            print($"Player {_playerIndex} has {_powerUpTimeLeft}s");
             if (_powerUpTimeLeft == 0) OnPowerUpEnded?.Invoke(_playerIndex);
             _isWaiting = false;
         }

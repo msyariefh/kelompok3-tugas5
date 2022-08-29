@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 456380607162833523}
   - component: {fileID: 456380607162833525}
   - component: {fileID: 456380607162833524}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 456380607162833522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.531, z: 0}
-  m_LocalScale: {x: 1, y: 2.5469, z: 1}
+  m_LocalScale: {x: 1, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 456380609085853275}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: caafd5abfbfe880498744fb90b000bb4, type: 2}
+  - {fileID: 2100000, guid: 0e18492be971f174a8392801e14067c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 456380607480359332}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 456380607610737835}
   - component: {fileID: 456380607610737837}
   - component: {fileID: 456380607610737836}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,8 +145,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456380607610737834}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.9109999, y: -0.7499998, z: 0}
-  m_LocalScale: {x: 3.1025984, y: 1.6412998, z: 0.66181}
+  m_LocalPosition: {x: -1.2, y: -0.7499998, z: 0}
+  m_LocalScale: {x: 3.1025984, y: 1.6412998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 456380607480359332}
@@ -180,7 +180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: caafd5abfbfe880498744fb90b000bb4, type: 2}
+  - {fileID: 2100000, guid: 0e18492be971f174a8392801e14067c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 456380608020095755}
   - component: {fileID: 456380608020095757}
   - component: {fileID: 456380608020095756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,9 +299,9 @@ GameObject:
   - component: {fileID: 2887920619196853169}
   - component: {fileID: 5392172948262636686}
   - component: {fileID: 5195934361662060887}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,7 +313,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456380608583239233}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 30.6873, y: 6, z: 39.4942}
   m_LocalScale: {x: 5.691533, y: 2.358906, z: 5.9731255}
   m_ConstrainProportionsScale: 0
@@ -322,7 +322,7 @@ Transform:
   - {fileID: 456380607480359332}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &456380608583239237
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -378,9 +378,10 @@ MonoBehaviour:
   _powerUpController: {fileID: 0}
   _pauseController: {fileID: 0}
   moveSpeed: 20
-  rotateSpeed: 20
+  rotateSpeed: 5
   inputController: {fileID: 2887920619196853169}
   tankHead: {fileID: 456380607162833523}
+  _tankBody: {fileID: 456380607480359332}
   _shootPos: {fileID: 46661630876287104}
 --- !u!143 &5195934361662060887
 CharacterController:
@@ -395,7 +396,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 1.6
-  m_SlopeLimit: 45
+  m_SlopeLimit: 30
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -411,7 +412,7 @@ GameObject:
   - component: {fileID: 456380608780365684}
   - component: {fileID: 456380608780365686}
   - component: {fileID: 456380608780365685}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,8 +427,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456380608780365683}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.90000015, y: -0.7499998, z: 0}
-  m_LocalScale: {x: 3.1025984, y: 1.6412998, z: 0.66181}
+  m_LocalPosition: {x: 1.2, y: -0.7499998, z: 0}
+  m_LocalScale: {x: 3.1025984, y: 1.6412998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 456380607480359332}
@@ -461,7 +462,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: caafd5abfbfe880498744fb90b000bb4, type: 2}
+  - {fileID: 2100000, guid: 0e18492be971f174a8392801e14067c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -494,7 +495,7 @@ GameObject:
   - component: {fileID: 456380609085853275}
   - component: {fileID: 456380609085853277}
   - component: {fileID: 456380609085853276}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,8 +510,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456380609085853274}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.181, z: 0.785}
-  m_LocalScale: {x: 0.2, y: 0.50372, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.181, z: 0.88}
+  m_LocalScale: {x: 0.3, y: 0.85, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 456380607162833523}
@@ -575,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 46661630876287104}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2661271041516117207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.77}
+  m_LocalPosition: {x: 0, y: 0, z: 1.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

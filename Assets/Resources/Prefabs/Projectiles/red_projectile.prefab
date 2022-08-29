@@ -128,8 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee66a3f243005e6469ea74c68a2f75aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 80
   explosionPrefab: {fileID: 177540, guid: a8c6d338f96b1d249b9964ce2e652e7f, type: 3}
+  _includedMask:
+    serializedVersion: 2
+    m_Bits: 24
 --- !u!96 &4917441747386562699
 TrailRenderer:
   serializedVersion: 2

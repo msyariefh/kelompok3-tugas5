@@ -22,6 +22,7 @@ namespace TankU.Bomb
         {
             _pauseController.OnGamePause += OnGamePaused;
             _pauseController.OnGameResume += OnGameResumed;
+            StartCoroutine(Explode(_timeBeforeExplode));
         }
 
         private void OnDisable()
@@ -30,11 +31,6 @@ namespace TankU.Bomb
             _pauseController.OnGameResume -= OnGameResumed;
         }
 
-        void Start()
-        {
-            // Invoke Explode in 3 seconds
-            StartCoroutine(Explode(_timeBeforeExplode));
-        }
 
 
         IEnumerator Explode(float _time)
@@ -51,7 +47,7 @@ namespace TankU.Bomb
             StartCoroutine(CreateExplosions(Vector3.left));
 
             //Disable mesh
-            GetComponent<MeshRenderer>().enabled = false;
+            //GetComponent<MeshRenderer>().enabled = false;
 
             //Disable collider
             //transform.Find("Collider").gameObject.SetActive(false);

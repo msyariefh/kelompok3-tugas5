@@ -25,7 +25,7 @@ namespace TankU.PowerUP
 
         private List<GameObject> _medicPowerUpPool;
         private List<GameObject> _bouncePowerUpPool;
-        private bool _isGamePaused = false;
+        private bool _isGamePaused = true;
         private int _currentPowerUpInField = 0;
 
         private const float RADIUS_FROM_OBSTACLE = .25f;
@@ -37,6 +37,7 @@ namespace TankU.PowerUP
         }
         private void Update()
         {
+            if (_isGamePaused) return;
             if (_currentPowerUpInField < _maximumPowerUpInField)
                 StartCoroutine(PowerUpProduction());
         }
@@ -57,7 +58,7 @@ namespace TankU.PowerUP
 
         private void OnCountdownEnded()
         {
-
+            _isGamePaused = false;
         }
 
         public void OnGameOver(int index)

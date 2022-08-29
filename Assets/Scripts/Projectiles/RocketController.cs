@@ -19,7 +19,7 @@ namespace TankU.Projectile
         [SerializeField] private LayerMask _includedMask;
         private PauseController _pauseController;
         private PlayerController _playerController;
-        public bool _isPoweredUp { get; set; } = false;
+        public bool IsPoweredUp { get; set; } = false;
         public void SetController(PauseController _pause, PlayerController _player)
         {
             _pauseController = _pause;
@@ -41,7 +41,7 @@ namespace TankU.Projectile
             _pauseController.OnGameResume += OnGameResumed;
             _playerController.OnPowerUpEnded += OnPowerUpEnded;
             if (_coll == null) _coll = GetComponent<Collider>();
-            _coll.isTrigger = !_isPoweredUp;
+            _coll.isTrigger = !IsPoweredUp;
         }
         private void OnDisable()
         {
@@ -76,7 +76,6 @@ namespace TankU.Projectile
         {
             rb = GetComponent<Rigidbody>();
             rb.velocity = speed * transform.forward;
-            print(transform.position + " " + transform.rotation.ToString());
         }
 
         private void OnTriggerEnter(Collider other)
@@ -93,7 +92,7 @@ namespace TankU.Projectile
                 gameObject.SetActive(false);
             }
 
-            if (!_isPoweredUp)
+            if (!IsPoweredUp)
             {
                 Explode();
                 gameObject.SetActive(false);

@@ -96,7 +96,7 @@ namespace TankU.HUD
         {
             string s1 = "00" + Mathf.FloorToInt(_timer / 60).ToString();
             string s2 = "00" + (_timer % 60).ToString();
-            _timertext.GetComponent<TextMeshProUGUI>().text = string.Format("{0}:{1}", s1.Substring(s1.Length - 2), s2.Substring(s2.Length - 2));
+            _timertext.GetComponent<TextMeshProUGUI>().text = string.Format("{0}:{1}", s1[^2..], s2[^2..]);
         }
 
         void OnBouncePowerUp(int _index)
@@ -107,8 +107,9 @@ namespace TankU.HUD
 
         void OnBouncePowerUpEnded(int _index)
         {
-            _playerPowerUpIndicators[_index].color = new Color(255, 255, 255, 150);
-            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color(255, 255, 255, 67);
+            print(_index + " ended");
+            _playerPowerUpIndicators[_index].color = new Color32(255, 255, 255, 150);
+            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 67);
         }
 
 
