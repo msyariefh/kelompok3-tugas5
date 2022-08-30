@@ -1,17 +1,22 @@
+using System;
 using System.Collections;
 using TankU.PlayerInput;
+using TankU.PlayerObject;
+using TankU.Projectile;
 using TankU.Timer;
 using UnityEngine;
 
 namespace TankU.Bomb
 {
-    public class Bomb : MonoBehaviour, IPausable
+    public class Bomb : MonoBehaviour, IPausable, IHitable
     {
         private PauseController _pauseController;
         [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private LayerMask levelMask;
         [SerializeField] private float _timeBeforeExplode; 
         private bool _isGamePaused = false;
+
+        public event Action<int> OnHitPlayer;
 
         public void SetPauseController(PauseController _controller)
         {
@@ -46,14 +51,6 @@ namespace TankU.Bomb
             StartCoroutine(CreateExplosions(Vector3.right));
             StartCoroutine(CreateExplosions(Vector3.left));
 
-            //Disable mesh
-            //GetComponent<MeshRenderer>().enabled = false;
-
-            //Disable collider
-            //transform.Find("Collider").gameObject.SetActive(false);
-
-            //Destroy the bomb object in 0.3 seconds, after all coroutines have finished
-
             StartCoroutine(DisableObjectAfter(.3f));
         }
 
@@ -80,6 +77,12 @@ namespace TankU.Bomb
 
                 else
                 {
+                    Collider _coll = hit.collider;
+                    IDamagable _damageInterface = _coll.GetComponentInParent<IDamagable>();
+                    if (_damageInterface != null)
+                    {
+                        OnHitPlayer?.Invoke(_damageInterface.Index);
+                    }
                     break;
                 }
 

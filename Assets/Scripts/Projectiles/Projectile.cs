@@ -10,7 +10,7 @@ namespace TankU.Projectile
 {
     public class Projectile : MonoBehaviour, IPausable, IHitable
     {
-        [SerializeField] private float speed;
+        [SerializeField] private float speed; 
         private Vector3 _velocity;
         private Rigidbody rb;
         private Collider _coll;
