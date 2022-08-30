@@ -14,18 +14,18 @@ namespace TankU.PlayerObject
         [SerializeField] PowerUpController _powerUpController;
         [SerializeField] PauseController _pauseController;
         [SerializeField]
-        private float moveSpeed;
+        private float _moveSpeed;
         [SerializeField]
-        private float rotateSpeed;
+        private float _rotateSpeed;
         [SerializeField]
-        private InputController inputController;
+        private InputController _inputController;
         [SerializeField]
-        private Transform tankHead;
+        private Transform _tankHead;
         [SerializeField]
         private Transform _tankBody;
         [SerializeField] private Transform _shootPos;
 
-        private CharacterController controller;
+        //private CharacterController _controller;
         private Rigidbody _rigidbody;
         public event Action<bool, Transform, int> OnPlayerShoot;
         public event Action<Transform> OnBombPlanted;
@@ -60,14 +60,14 @@ namespace TankU.PlayerObject
 
         private void Awake()
         {
-            controller = GetComponent<CharacterController>();
-            //_rigidbody = GetComponent<Rigidbody>();
+            //controller = GetComponent<CharacterController>();
+            _rigidbody = GetComponent<Rigidbody>();
 
         }
         private void Update()
         {
-            if (inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(_powerUpTimeLeft > 0, _shootPos, _playerIndex);
-            if (inputController.BombPlantInput()) OnBombPlanted?.Invoke(transform);
+            if (_inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(_powerUpTimeLeft > 0, _shootPos, _playerIndex);
+            if (_inputController.BombPlantInput()) OnBombPlanted?.Invoke(transform);
             if (_powerUpTimeLeft < 1) return;
             else
             {
@@ -79,12 +79,14 @@ namespace TankU.PlayerObject
 
         private void FixedUpdate()
         {
-            Vector3 _moveInput = inputController.ProcessMoveInput();
-            controller.Move(moveSpeed * Time.fixedDeltaTime * _moveInput);
-            tankHead.Rotate(inputController.ProcessRotateInput() * rotateSpeed);
+            Vector3 _moveInput = _inputController.ProcessMoveInput();
+            //_controller.Move(_moveSpeed * Time.fixedDeltaTime * _moveInput);
+            _rigidbody.velocity = _moveInput * _moveSpeed * 10 * Time.fixedDeltaTime;
+            _tankHead.Rotate(_inputController.ProcessRotateInput() * _rotateSpeed);
             if (_currentLooking != _moveInput)
             {
-                _tankBody.rotation = Quaternion.LookRotation(_moveInput);
+                //_tankBody.rotation = Quaternion.LookRotation(_moveInput);
+                transform.rotation = Quaternion.LookRotation(_moveInput);
             }
             
         }

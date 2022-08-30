@@ -8,9 +8,9 @@ namespace TankU.PlayerInput
 {
     public class InputController : MonoBehaviour, IPausable
     {
-        [SerializeField] private InputScriptable inputScriptable;
-        [SerializeField] private CountdownController countdownController;
-        [SerializeField] private HPController hpController;
+        [SerializeField] private InputScriptable _inputScriptable;
+        [SerializeField] private CountdownController _countdownController;
+        [SerializeField] private HPController _hpController;
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private float _playerShootInterval;
         [SerializeField] private float _playerPlantBombInterval;
@@ -36,33 +36,33 @@ namespace TankU.PlayerInput
         {
             _pauseController.OnGamePause += OnGamePaused;
             _pauseController.OnGameResume += OnGameResumed;
-            countdownController.OnCountdownEnded += OnGameStarted;
-            hpController.OnGameOver += OnGameOver;
+            _countdownController.OnCountdownEnded += OnGameStarted;
+            _hpController.OnGameOver += OnGameOver;
         }
 
         private void OnDisable()
         {
             _pauseController.OnGamePause -= OnGamePaused;
             _pauseController.OnGameResume -= OnGameResumed;
-            countdownController.OnCountdownEnded -= OnGameStarted;
-            hpController.OnGameOver -= OnGameOver;
+            _countdownController.OnCountdownEnded -= OnGameStarted;
+            _hpController.OnGameOver -= OnGameOver;
         }
 
         public Vector3 ProcessMoveInput()
         {
             if (_isGamePaused) return Vector3.zero;
-            if (Input.GetKey(inputScriptable.InputKeys.moveLeft)) return Vector3.left;
-            if (Input.GetKey(inputScriptable.InputKeys.moveRight)) return Vector3.right;
-            if (Input.GetKey(inputScriptable.InputKeys.moveForward)) return Vector3.forward;
-            if (Input.GetKey(inputScriptable.InputKeys.moveBackward)) return Vector3.back;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveLeft)) return Vector3.left;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveRight)) return Vector3.right;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveForward)) return Vector3.forward;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveBackward)) return Vector3.back;
             return Vector3.zero;
         }
 
         public Vector3 ProcessRotateInput()
         {
             if (_isGamePaused) return Vector3.zero;
-            if (Input.GetKey(inputScriptable.InputKeys.rotateLeft)) return new Vector3(0, -1, 0);
-            if (Input.GetKey(inputScriptable.InputKeys.rotateRight)) return new Vector3(0, 1, 0);
+            if (Input.GetKey(_inputScriptable.InputKeys.rotateLeft)) return new Vector3(0, -1, 0);
+            if (Input.GetKey(_inputScriptable.InputKeys.rotateRight)) return new Vector3(0, 1, 0);
             return Vector3.zero;
         }
 
@@ -70,7 +70,7 @@ namespace TankU.PlayerInput
         {
             if (_isGamePaused) return false;
             if (_isInShootCooldown) return false;
-            if (Input.GetKeyDown(inputScriptable.InputKeys.shoot))
+            if (Input.GetKeyDown(_inputScriptable.InputKeys.shoot))
             {
                 _isInShootCooldown = true;
                 StartCoroutine(CooldownShoot(_playerShootInterval));
@@ -83,7 +83,7 @@ namespace TankU.PlayerInput
         {
             if (_isGamePaused) return false;
             if (_isInPlantBombCooldown) return false;
-            if (Input.GetKeyDown(inputScriptable.InputKeys.plantBomb))
+            if (Input.GetKeyDown(_inputScriptable.InputKeys.plantBomb))
             {
                 _isInPlantBombCooldown = true;
                 StartCoroutine(CooldownPlantBomb(_playerPlantBombInterval));
