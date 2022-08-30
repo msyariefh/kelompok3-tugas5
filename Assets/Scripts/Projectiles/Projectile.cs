@@ -112,7 +112,6 @@ namespace TankU.Projectile
         void Explode()
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            GetComponent<MeshRenderer>().enabled = false;
 
         }
 
