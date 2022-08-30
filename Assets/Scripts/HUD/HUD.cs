@@ -17,6 +17,7 @@ namespace TankU.HUD
         [SerializeField] private HPController _hpController;
         [SerializeField] private PlayerController[] _playerControllers;
         [SerializeField] private CountdownController _countdownController;
+        [SerializeField] private Image[] _playerImage;
 
         [Header("Pop-Up")]
         [SerializeField]
@@ -68,6 +69,12 @@ namespace TankU.HUD
         private void OnCountdownEnded()
         {
             HUDPopup.SetActive(true);
+            for (int i = 0; i < _playerImage.Length; i++)
+            { 
+                ColorUtility.TryParseHtmlString($"#{PlayerPrefs.GetString($"Player{i} Color")}", out Color _playerColor);
+                _playerImage[i].color = _playerColor;
+            }
+
         }
 
         private void OnPlayerHealthInit(List<int> _healths)
