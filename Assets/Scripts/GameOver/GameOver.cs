@@ -42,13 +42,13 @@ namespace TankU.GameOver
         
         void CheckWin(int c)
         { 
-            if (c == 0)
+            if (c == -1)
             {
                 _winner.text = "TIE \nToo Bad, No One Wins!";
             }
             else
             {
-                _winner.text = $"Congratulation! \nPlayer {c} Wins!";
+                _winner.text = $"Congratulation! \nPlayer {c + 1} Wins!";
             }
         }
 

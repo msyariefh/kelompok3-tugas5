@@ -92,11 +92,11 @@ namespace TankU.HPSystem
 
             if (_possibleTie.Count > 1)
             {
-                OnGameOver?.Invoke(0);
+                OnGameOver?.Invoke(-1);
             }
             else if (_possibleTie.Count == 1)
             {
-                OnGameOver?.Invoke(_possibleTie[0] + 1);
+                OnGameOver?.Invoke(_possibleTie[0]);
             }
         }
     }
