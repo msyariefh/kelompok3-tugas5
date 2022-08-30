@@ -1324,6 +1324,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 838251409}
     m_Modifications:
+    - target: {fileID: 8825959411389353151, guid: d431c8f6b2fd39b468e94eb9f875449b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.290039
+      objectReference: {fileID: 0}
     - target: {fileID: 8825959411585357832, guid: d431c8f6b2fd39b468e94eb9f875449b, type: 3}
       propertyPath: m_Name
       value: GameOverContainer
@@ -1522,6 +1526,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 46661630876287104, guid: 96d67d3053324b94a8f5800fe5545a8d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 46661630876287104, guid: 96d67d3053324b94a8f5800fe5545a8d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.095
+      objectReference: {fileID: 0}
     - target: {fileID: 456380608583239233, guid: 96d67d3053324b94a8f5800fe5545a8d, type: 3}
       propertyPath: m_Name
       value: Player
