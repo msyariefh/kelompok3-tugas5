@@ -75,7 +75,6 @@ namespace TankU.Projectile
         void Start()
         {
             rb = GetComponent<Rigidbody>();
-            rb.velocity = speed * transform.forward;
         }
 
         private void OnTriggerEnter(Collider other)
