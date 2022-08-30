@@ -14,8 +14,8 @@ namespace TankU.Projectile
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private int _damageGivenPerProjectile;
 
-        public event Action<int, int> OnPlayerHit;
-        private List<GameObject> _projectilePool = new List<GameObject>();
+        public event Action<int, int> OnProjectileHitPlayer;
+        private readonly List<GameObject> _projectilePool = new();
 
 
         private void OnEnable()
@@ -35,7 +35,7 @@ namespace TankU.Projectile
 
         private void OnHitPlayer(int _index)
         {
-            OnPlayerHit?.Invoke(_index, _damageGivenPerProjectile);
+            OnProjectileHitPlayer?.Invoke(_index, _damageGivenPerProjectile);
         }
 
         private void OnPlayerShoot(bool _isPoweredUp, Transform _player, int _index)

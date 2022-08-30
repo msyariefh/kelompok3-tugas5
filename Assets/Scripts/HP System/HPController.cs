@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TankU.Bomb;
 using TankU.PowerUP;
 using TankU.Projectile;
 using TankU.Timer;
@@ -13,6 +14,7 @@ namespace TankU.HPSystem
         [SerializeField] private TimerController _timerController;
         [SerializeField] private PowerUpController _powerUpController;
         [SerializeField] private ProjectileController _projectileController;
+        [SerializeField] private BomController _bomController;
         [SerializeField] private int _totalPlayer = 2;
         [SerializeField] private int _maximumPlayerHP;
 
@@ -34,13 +36,15 @@ namespace TankU.HPSystem
         {
             _timerController.OnTimesUp += OnTimesUp;
             _powerUpController.OnMedicPowerUp += OnMedicPowerUp;
-            _projectileController.OnPlayerHit += OnPlayerHit;
+            _projectileController.OnProjectileHitPlayer += OnPlayerHit;
+            _bomController.OnBombHitPlayer += OnPlayerHit;
         }
         private void OnDisable()
         {
             _timerController.OnTimesUp -= OnTimesUp;
             _powerUpController.OnMedicPowerUp -= OnMedicPowerUp;
-            _projectileController.OnPlayerHit -= OnPlayerHit;
+            _projectileController.OnProjectileHitPlayer -= OnPlayerHit;
+            _bomController.OnBombHitPlayer -= OnPlayerHit;
         }
 
         private void OnPlayerHit(int _playerIndex, int _damage)

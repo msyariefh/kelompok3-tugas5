@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TankU.PlayerInput;
 using TankU.PlayerObject;
+using TankU.Projectile;
 using UnityEngine;
 
 namespace TankU.Bomb
@@ -11,8 +13,10 @@ namespace TankU.Bomb
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private PlayerController[] _playerControllers;
         [SerializeField] private GameObject _bombPrefab;
+        [SerializeField] private int _damageGivenByBomb = 1;
 
-        private List<GameObject> _bombPool = new List<GameObject>();
+        private readonly List<GameObject> _bombPool = new ();
+        public event Action<int, int> OnBombHitPlayer;
 
         private void OnEnable()
         {
@@ -30,21 +34,25 @@ namespace TankU.Bomb
             }
         }
 
+        private void OnHitPlayer(int _index)
+        {
+            OnBombHitPlayer?.Invoke(_index, _damageGivenByBomb);
+        }
+
         private void OnBombPlanted(Transform _player)
         {
             GameObject _readyBomb = GetObjectFromPool(_bombPool);
             if (_readyBomb == null)
             {
                 _readyBomb = Instantiate(_bombPrefab, _player.position, Quaternion.identity);
+                IHitable _hitableInterface = _readyBomb.GetComponent<IHitable>();
+                _hitableInterface.OnHitPlayer += OnHitPlayer;
                 _readyBomb.GetComponent<Bomb>().SetPauseController(_pauseController);
-                _readyBomb.SetActive(true);
                 _bombPool.Add(_readyBomb);
             }
-            else
-            {
-                _readyBomb.transform.position = _player.position;
-                _readyBomb.SetActive(true);
-            }
+
+            _readyBomb.transform.position = _player.position;
+            _readyBomb.SetActive(true);
         }
 
         private GameObject GetObjectFromPool(List<GameObject> _pool)
