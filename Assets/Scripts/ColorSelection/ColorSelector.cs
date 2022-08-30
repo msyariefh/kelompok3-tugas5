@@ -12,11 +12,11 @@ namespace TankU.ColorSelection
         [SerializeField] 
         GameObject _tutorialPanel;
         [SerializeField]
+        int _playerNum;
+        [SerializeField]
         private GameObject[] colorView;
         [SerializeField]
         private Button[] btnPicks;
-        [SerializeField]
-        private Material[] _playerMaterials;
         [SerializeField]
         private Color[] colors;
 
@@ -30,7 +30,7 @@ namespace TankU.ColorSelection
                 int x = i;
                 btnPicks[i].onClick.AddListener(delegate { ChangeMaterial(x); });
             }
-            _indexSelected = new int[_playerMaterials.Length];
+            _indexSelected = new int[_playerNum];
             for (int i = 0; i < _indexSelected.Length; i++)
             {
                 _indexSelected[i] = 0;
@@ -53,10 +53,13 @@ namespace TankU.ColorSelection
 
         private void OnSelection()
         {
-            for(int i = 0; i < _playerMaterials.Length; i++)
+            for(int i = 0; i < _playerNum; i++)
             {
-                _playerMaterials[i].color = colors[_indexSelected[i]];
+                PlayerPrefs.SetString($"Player{i} Color", ColorUtility.ToHtmlStringRGBA(colors[_indexSelected[i]]));
             }
+            PlayerPrefs.Save();
+
+
 
             _tutorialPanel.SetActive(true);
             gameObject.SetActive(false);

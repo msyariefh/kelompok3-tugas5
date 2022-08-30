@@ -49,9 +49,9 @@ namespace TankU.Projectile
                 _projectilePool.Add(_projectileReady);
             }
             _projectileReady.transform.position = _player.position;
-            _projectileReady.GetComponent<RocketController>().ChangeRotation(_player);
-            _projectileReady.GetComponent<RocketController>().SetController(_pauseController, _playerControllers[_index]);
-            _projectileReady.GetComponent<RocketController>().IsPoweredUp = _isPoweredUp;
+            _projectileReady.GetComponent<Projectile>().ChangeRotation(_player);
+            _projectileReady.GetComponent<Projectile>().SetController(_pauseController, _playerControllers[_index]);
+            _projectileReady.GetComponent<Projectile>().IsPoweredUp = _isPoweredUp;
             _projectileReady.SetActive(true);
         }
         private GameObject GetObjectFromPool(List<GameObject> _pool)

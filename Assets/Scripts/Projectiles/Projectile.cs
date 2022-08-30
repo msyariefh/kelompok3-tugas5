@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace TankU.Projectile
 {
-    public class RocketController : MonoBehaviour, IPausable, IHitable
+    public class Projectile : MonoBehaviour, IPausable, IHitable
     {
         [SerializeField] private float speed;
         private Vector3 _velocity;
@@ -82,7 +82,7 @@ namespace TankU.Projectile
             if (!(other.CompareTag("Player") || other.CompareTag("Wall"))) return;
 
             IDamagable _damageInterface = other.gameObject.GetComponent<IDamagable>();
-
+            
             if(_damageInterface != null)
             {
                 print("hit Player " + _damageInterface.Index);
@@ -90,7 +90,6 @@ namespace TankU.Projectile
                 Explode();
                 gameObject.SetActive(false);
             }
-
             if (!IsPoweredUp)
             {
                 Explode();
