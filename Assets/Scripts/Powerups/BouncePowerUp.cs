@@ -11,7 +11,7 @@ namespace TankU.PowerUP
 
         private void OnTriggerEnter(Collider other)
         {
-            IBuffable _buffInterface = other.gameObject.GetComponent<IBuffable>();
+            IBuffable _buffInterface = other.gameObject.GetComponentInParent<IBuffable>();
 
             if (_buffInterface == null) return;
 

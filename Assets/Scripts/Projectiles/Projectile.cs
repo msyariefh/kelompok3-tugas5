@@ -81,7 +81,7 @@ namespace TankU.Projectile
         {
             if (!(other.CompareTag("Player") || other.CompareTag("Wall"))) return;
 
-            IDamagable _damageInterface = other.gameObject.GetComponent<IDamagable>();
+            IDamagable _damageInterface = other.GetComponentInParent<IDamagable>();
             
             if(_damageInterface != null)
             {
