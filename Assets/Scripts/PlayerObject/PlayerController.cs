@@ -17,13 +17,13 @@ namespace TankU.PlayerObject
         private float _moveSpeed;
         [SerializeField]
         private float _rotateSpeed;
-        [SerializeField]
         private InputController _inputController;
         [SerializeField]
         private Transform _tankHead;
         [SerializeField]
         private Transform _tankBody;
         [SerializeField] private Transform _shootPos;
+        [SerializeField] Renderer[] _rendererToBeChangedInStart;
 
         //private CharacterController _controller;
         private Rigidbody _rigidbody;
@@ -38,12 +38,14 @@ namespace TankU.PlayerObject
         private Vector3 _currentLooking = Vector3.zero;
 
         public int Index => _playerIndex;
+        private bool _isGameStarted = false;
 
         private void OnEnable()
         {
             _powerUpController.OnBouncePowerUp += OnBouncePowerUp;
             _pauseController.OnGamePause += OnGamePaused;
             _pauseController.OnGameResume += OnGameResumed;
+            
         }
         private void OnDisable()
         {
@@ -62,10 +64,19 @@ namespace TankU.PlayerObject
         {
             //controller = GetComponent<CharacterController>();
             _rigidbody = GetComponent<Rigidbody>();
+            _inputController = GetComponent<InputController>();
+            
 
         }
         private void Update()
         {
+            if (_isGameStarted != _inputController.IsGameStarted)
+            {
+                _isGameStarted = _inputController.IsGameStarted;
+                ColorUtility.TryParseHtmlString($"#{PlayerPrefs.GetString($"Player{_playerIndex} Color")}", out Color _playerColor);
+                //print(PlayerPrefs.GetString($"Player{_playerIndex} Color"));
+                SetPropertyColor(_playerColor);
+            }
             if (_inputController.PlayerShootInput()) OnPlayerShoot?.Invoke(_powerUpTimeLeft > 0, _shootPos, _playerIndex);
             if (_inputController.BombPlantInput()) OnBombPlanted?.Invoke(transform);
             if (_powerUpTimeLeft < 1) return;
@@ -85,10 +96,10 @@ namespace TankU.PlayerObject
             _tankHead.Rotate(_inputController.ProcessRotateInput() * _rotateSpeed);
             if (_currentLooking != _moveInput)
             {
-                //_tankBody.rotation = Quaternion.LookRotation(_moveInput);
-                transform.rotation = Quaternion.LookRotation(_moveInput);
+                _tankBody.rotation = Quaternion.LookRotation(_moveInput);
+                //transform.rotation = Quaternion.LookRotation(_moveInput);
             }
-            
+
         }
 
         public void OnGamePaused()
@@ -115,6 +126,18 @@ namespace TankU.PlayerObject
             print($"Player {_playerIndex} has {_powerUpTimeLeft}s");
             if (_powerUpTimeLeft == 0) OnPowerUpEnded?.Invoke(_playerIndex);
             _isWaiting = false;
+        }
+
+        private void SetPropertyColor(Color _color)
+        {
+            var _propBlock = new MaterialPropertyBlock();
+            
+            foreach (Renderer _r in _rendererToBeChangedInStart)
+            {
+                _r.GetPropertyBlock(_propBlock);
+                _propBlock.SetColor("_Color", _color);
+                _r.SetPropertyBlock(_propBlock);
+            }
         }
     }
 }
