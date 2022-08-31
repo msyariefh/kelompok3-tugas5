@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TankU.HPSystem;
+using TankU.SaveData;
 
 namespace TankU.GameOver
 {
@@ -38,16 +39,26 @@ namespace TankU.GameOver
         {
             transform.GetChild(0).gameObject.SetActive(true);
             CheckWin(c);
+
         }
         
         void CheckWin(int c)
         { 
             if (c == -1)
             {
+                for (int i = 0; i < DataController.Instance.TotalPlayer; i++)
+                {
+                    DataController.Instance.SetPlayerProgress(i, PlayerProgress.MatchResult.TIE);
+                }
                 _winner.text = "TIE \nToo Bad, No One Wins!";
             }
             else
             {
+                for (int i = 0; i <DataController.Instance.TotalPlayer; i++)
+                {
+                    if (i == c) DataController.Instance.SetPlayerProgress(i, PlayerProgress.MatchResult.WIN);
+                    else DataController.Instance.SetPlayerProgress(i, PlayerProgress.MatchResult.LOSE);
+                }
                 _winner.text = $"Congratulation! \nPlayer {c + 1} Wins!";
             }
         }

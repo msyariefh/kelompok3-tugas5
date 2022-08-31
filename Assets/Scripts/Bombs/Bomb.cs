@@ -62,7 +62,10 @@ namespace TankU.Bomb
 
         private IEnumerator CreateExplosions(Vector3 direction)
         {
-            for (int i = 1; i < 85; i++)
+            int k = 1;
+            if (direction == Vector3.forward) k = 0;
+
+            for (int i = k ; i < 85; i++)
             {
                 //gives information about what the raycast hits
                 RaycastHit hit;
@@ -70,24 +73,35 @@ namespace TankU.Bomb
                 //Raycast in the specified direction at i distance, because of the layer mask it'll only hit blocks, not players or bombs
                 Physics.Raycast(transform.position + new Vector3(0, .5f, 0), direction, out hit, i * 5, levelMask);
 
+                
+
                 if (!hit.collider)
                 {
-                    Instantiate(explosionPrefab, transform.position + ( 5 *i * direction), explosionPrefab.transform.rotation);
+                    Instantiate(explosionPrefab, transform.position + (5 * i * direction), explosionPrefab.transform.rotation);
+                }
+                else if (i == 0)
+                {
+                    CheckIsPlayer(hit.collider);
+                    continue;
                 }
 
                 else
                 {
-                    Collider _coll = hit.collider;
-                    IDamagable _damageInterface = _coll.GetComponentInParent<IDamagable>();
-                    if (_damageInterface != null)
-                    {
-                        OnHitPlayer?.Invoke(_damageInterface.Index);
-                    }
+                    CheckIsPlayer(hit.collider);
                     break;
                 }
 
                 //Wait 50 milliseconds before checking the next location
                 yield return new WaitForSeconds(.005f);
+            }
+        }
+
+        private void CheckIsPlayer(Collider _col)
+        {
+            IDamagable _damagable = _col.GetComponentInParent<IDamagable>();
+            if (_damagable != null)
+            {
+                OnHitPlayer?.Invoke(_damagable.Index);
             }
         }
 
