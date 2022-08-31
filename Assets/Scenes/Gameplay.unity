@@ -471,6 +471,7 @@ MonoBehaviour:
   - {fileID: 796642585}
   - {fileID: 1546915871}
   _bombPrefab: {fileID: 5243720821700790085, guid: c1beb87312578104089825f42b24b2fb, type: 3}
+  _damageGivenByBomb: 1
 --- !u!224 &454802239 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5806358139639257624, guid: e295b2c966ca8084ca0010e432577d8f, type: 3}
@@ -1674,6 +1675,7 @@ MonoBehaviour:
   _timerController: {fileID: 282641237}
   _powerUpController: {fileID: 2055622352}
   _projectileController: {fileID: 1482688177}
+  _bomController: {fileID: 440428242}
   _totalPlayer: 2
   _maximumPlayerHP: 5
 --- !u!1001 &1400578910
@@ -1782,6 +1784,8 @@ MonoBehaviour:
   - {fileID: 796642585}
   - {fileID: 1546915871}
   _projectilePrefab: {fileID: 1297266155982139761, guid: d2f0337863a684c40b337b2fa87801a7, type: 3}
+  muzzlePrefab: {fileID: 450044020708499364, guid: 14194ccd3614bb94a988f0f3c6729108, type: 3}
+  muzzlePosition: {fileID: 1705544633}
   _damageGivenPerProjectile: 1
 --- !u!1 &1524342569 stripped
 GameObject:
@@ -2038,6 +2042,11 @@ PrefabInstance:
       objectReference: {fileID: 1382556338}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d431c8f6b2fd39b468e94eb9f875449b, type: 3}
+--- !u!1 &1705544633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4278611656646427659, guid: 50448ce458c259b46b8cc80efc705088, type: 3}
+  m_PrefabInstance: {fileID: 796642584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2008008882
 GameObject:
   m_ObjectHideFlags: 0
