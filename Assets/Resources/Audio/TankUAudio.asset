@@ -19,10 +19,30 @@ MonoBehaviour:
     _isBGM: 1
     _audioMixerGroup: {fileID: 626758397227149968, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
   - _name: GameplayBGM
-    _audioClip: {fileID: 8300000, guid: 852602ed4c6ff4d458c9d34b563d9b19, type: 3}
+    _audioClip: {fileID: 8300000, guid: 8ce5d020a687c314891341b4126d1de2, type: 3}
     _isBGM: 1
     _audioMixerGroup: {fileID: 626758397227149968, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
-  - _name: SFX
-    _audioClip: {fileID: 0}
+  - _name: EngineDriveSFX
+    _audioClip: {fileID: 8300000, guid: fa6f782d7528ff741a5e608584998b6c, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -8048808282424409628, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
+  - _name: EngineIdleSFX
+    _audioClip: {fileID: 8300000, guid: e7720b78480120144b9526b4499fcf43, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: -8048808282424409628, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
+  - _name: ProjectileExplosionSFX
+    _audioClip: {fileID: 8300000, guid: 3a77defcde1caaa40b6f7502547e0c4e, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: 7055319419093695732, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
+  - _name: ShotChargingSFX
+    _audioClip: {fileID: 8300000, guid: c17f124fcdc0f5446a72f793898bd74b, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: 7055319419093695732, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
+  - _name: ShotFiringSFX
+    _audioClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
+    _isBGM: 0
+    _audioMixerGroup: {fileID: 7055319419093695732, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
+  - _name: TankExplosionSFX
+    _audioClip: {fileID: 8300000, guid: 5c27182a28a7eb942a362e6d198fe0e6, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: 7055319419093695732, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}

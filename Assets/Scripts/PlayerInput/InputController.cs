@@ -22,10 +22,12 @@ namespace TankU.PlayerInput
 
         private bool _isGamePaused = true;
         public bool IsGameStarted { get; private set; } = false;
+        public bool IsGameOver { get; private set; } = false;
 
         public void OnGameOver(int index)
         {
             _isGamePaused = true;
+            IsGameOver = true;
         }
 
         private void OnGameStarted()

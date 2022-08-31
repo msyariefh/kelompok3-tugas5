@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.Audio;
 using TankU.PlayerInput;
 using TankU.PowerUP;
 using TankU.Timer;
@@ -36,6 +37,8 @@ namespace TankU.PlayerObject
 
         public int Index => _playerIndex;
         private bool _isGameStarted = false;
+
+        private Sound _lastLoopingSoundPlayed;
 
         private void OnEnable()
         {
@@ -86,6 +89,18 @@ namespace TankU.PlayerObject
         private void FixedUpdate()
         {
             Vector3 _moveInput = _inputController.ProcessMoveInput();
+
+            if (_inputController.IsGameOver)
+                AudioManager.Instance.StopAllSFX();
+            // Sound when idle
+            if (_isGameStarted && !_inputController.IsGameOver)
+            {
+                if (_moveInput == Vector3.zero)
+                    LoopingAudioSfxProcess("EngineIdleSFX");
+                else LoopingAudioSfxProcess("EngineDriveSFX");
+            }
+            
+
             _rigidbody.velocity = _moveSpeed * 10 * Time.fixedDeltaTime * _moveInput;
             _tankHead.Rotate(_inputController.ProcessRotateInput() * _rotateSpeed);
             if (_moveInput == Vector3.zero) return;
@@ -95,6 +110,22 @@ namespace TankU.PlayerObject
                 _currentLooking = _moveInput;
             }
 
+        }
+
+        private void LoopingAudioSfxProcess(string _sfxTobePlayed)
+        {
+            if (_lastLoopingSoundPlayed == null)
+            {
+                _lastLoopingSoundPlayed = AudioManager.Instance.PlayLoopingSFX(_sfxTobePlayed);
+                return;
+            }
+            if (_lastLoopingSoundPlayed.Name != _sfxTobePlayed)
+            {
+                AudioManager.Instance.StopLoopingSFX(_lastLoopingSoundPlayed);
+                _lastLoopingSoundPlayed = AudioManager.Instance.PlayLoopingSFX(_sfxTobePlayed);
+                return;
+            }
+               
         }
 
         public void OnGamePaused()
