@@ -437,21 +437,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnNext: {fileID: 5806358139658504626}
   _tutorialPanel: {fileID: 0}
+  _playerNum: 0
   colorView:
   - {fileID: 5806358139715666129}
   - {fileID: 5806358138860340893}
   btnPicks:
   - {fileID: 5806358139900614291}
   - {fileID: 8613164214945004087}
-  _playerMaterials:
-  - {fileID: 2100000, guid: 0e18492be971f174a8392801e14067c7, type: 2}
-  - {fileID: 2100000, guid: d1ba20c06f8a81c4ca675e3434970809, type: 2}
   colors:
-  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.078431375, g: 0.2627451, b: 0.5254902, a: 1}
+  - {r: 0.6415094, g: 0.069597736, b: 0.069597736, a: 1}
   - {r: 1, g: 0.9371229, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.0450387, a: 1}
   - {r: 0, g: 0.9612422, b: 1, a: 1}
-  - {r: 0, g: 0.102935314, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.9107642, a: 1}
 --- !u!1 &5806358139658504628
 GameObject:
