@@ -108,15 +108,15 @@ namespace TankU.HUD
 
         void OnBouncePowerUp(int _index)
         {
-            _playerPowerUpIndicators[_index].color = Color.white; ;
-            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+            _playerPowerUpIndicators[_index].color = new Color32(113, 113, 113, 255); ;
+            //_playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         }
 
         void OnBouncePowerUpEnded(int _index)
         {
             print(_index + " ended");
-            _playerPowerUpIndicators[_index].color = new Color32(255, 255, 255, 150);
-            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 67);
+            _playerPowerUpIndicators[_index].color = new Color32(255, 255, 255, 255);
+            //_playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 67);
         }
 
 
