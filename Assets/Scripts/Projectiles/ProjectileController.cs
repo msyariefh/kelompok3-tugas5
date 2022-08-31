@@ -13,8 +13,8 @@ namespace TankU.Projectile
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private PlayerController[] _playerControllers;
         [SerializeField] private GameObject _projectilePrefab;
-        [SerializeField] private GameObject muzzlePrefab;
-        [SerializeField] private GameObject muzzlePosition;
+        [SerializeField] private GameObject _muzzlePrefab;
+        [SerializeField] private Transform[] _muzzlePosition;
         [SerializeField] private int _damageGivenPerProjectile;
 
         public event Action<int, int> OnProjectileHitPlayer;
@@ -43,7 +43,7 @@ namespace TankU.Projectile
 
         private void OnPlayerShoot(bool _isPoweredUp, Transform _player, int _index)
         {
-            var flash = Instantiate(muzzlePrefab, muzzlePosition.transform);
+            var flash = Instantiate(_muzzlePrefab, _muzzlePosition[_index]);
             GameObject _projectileReady = GetObjectFromPool(_projectilePool);
             if(_projectileReady == null)
             {

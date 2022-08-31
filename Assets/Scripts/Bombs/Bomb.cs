@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TankU.Audio;
 using TankU.PlayerInput;
 using TankU.PlayerObject;
 using TankU.Projectile;
@@ -50,6 +51,8 @@ namespace TankU.Bomb
             StartCoroutine(CreateExplosions(Vector3.back));
             StartCoroutine(CreateExplosions(Vector3.right));
             StartCoroutine(CreateExplosions(Vector3.left));
+
+            AudioManager.Instance.PlaySFX("BombSFX");
 
             StartCoroutine(DisableObjectAfter(.3f));
         }

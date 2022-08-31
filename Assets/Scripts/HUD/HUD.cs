@@ -15,21 +15,23 @@ namespace TankU.HUD
         [Header("References")]
         [SerializeField] private TimerController _timerController;
         [SerializeField] private HPController _hpController;
-        [SerializeField] private PlayerController[] _playerControllers;
         [SerializeField] private CountdownController _countdownController;
-        [SerializeField] private Image[] _playerImage;
 
         [Header("Pop-Up")]
         [SerializeField]
         private GameObject HUDPopup;
 
+        [Header("Timer")]
+        [SerializeField]
+        private TextMeshProUGUI _timertext;
+
         [Header("Life")]
         [SerializeField]
         private Slider[] _playerHpSliders;
 
-        [Header("Timer")]
-        [SerializeField]
-        private TextMeshProUGUI _timertext;
+        [SerializeField] private PlayerController[] _playerControllers;
+        [SerializeField] private Image[] _playerImage;
+        [SerializeField] private Image[] _sliderFill;
 
         [Header("PowerUP")]
         [SerializeField]
@@ -73,6 +75,7 @@ namespace TankU.HUD
             { 
                 ColorUtility.TryParseHtmlString($"#{PlayerPrefs.GetString($"Player{i} Color")}", out Color _playerColor);
                 _playerImage[i].color = _playerColor;
+                _sliderFill[i].color = _playerColor;
             }
 
         }
@@ -108,15 +111,15 @@ namespace TankU.HUD
 
         void OnBouncePowerUp(int _index)
         {
-            _playerPowerUpIndicators[_index].color = new Color32(113, 113, 113, 255); ;
-            //_playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+            _playerPowerUpIndicators[_index].color = Color.white ;
+            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
         }
 
         void OnBouncePowerUpEnded(int _index)
         {
             print(_index + " ended");
-            _playerPowerUpIndicators[_index].color = new Color32(255, 255, 255, 255);
-            //_playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 67);
+            _playerPowerUpIndicators[_index].color = new Color32(255, 255, 255, 0);
+            _playerPowerUpIndicators[_index].GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 0);
         }
 
 
