@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.Audio;
 using TankU.PlayerInput;
 using TankU.PlayerObject;
 using UnityEngine;
@@ -52,6 +53,7 @@ namespace TankU.Projectile
             _projectileReady.GetComponent<Projectile>().ChangeRotation(_player);
             _projectileReady.GetComponent<Projectile>().SetController(_pauseController, _playerControllers[_index]);
             _projectileReady.GetComponent<Projectile>().IsPoweredUp = _isPoweredUp;
+            AudioManager.Instance.PlaySFX("ShotFiringSFX");
             _projectileReady.SetActive(true);
         }
         private GameObject GetObjectFromPool(List<GameObject> _pool)

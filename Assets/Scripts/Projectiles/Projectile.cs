@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.Audio;
 using TankU.PlayerInput;
 using TankU.PlayerObject;
 using TankU.Timer;
@@ -112,7 +113,7 @@ namespace TankU.Projectile
         void Explode()
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
+            AudioManager.Instance.PlaySFX("ProjectileExplosionSFX");
         }
 
     }

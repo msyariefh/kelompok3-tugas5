@@ -1,4 +1,5 @@
 using System;
+using TankU.Audio;
 using TankU.PlayerObject;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace TankU.PowerUP
             if (_buffInterface == null) return;
 
             OnPlayerPicked?.Invoke(_buffInterface.Index, PowerUpController.Type.Bounce);
+            AudioManager.Instance.PlaySFX("ShotChargingSFX");
             gameObject.SetActive(false);
         }
 

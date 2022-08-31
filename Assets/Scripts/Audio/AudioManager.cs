@@ -139,6 +139,15 @@ namespace TankU.Audio
             _loopingSFX.AudioSource.Stop();
             _loopingSFX.AudioSource.loop = _loopingSFX.IsBGM;
         }
+        public void StopAllSFX()
+        {
+            foreach(Sound s in _sounds)
+            {
+                if (s.IsBGM) continue;
+                if (!s.AudioSource.isPlaying) continue;
+                s.AudioSource.Stop();
+            }
+        }
     }
 }
 
