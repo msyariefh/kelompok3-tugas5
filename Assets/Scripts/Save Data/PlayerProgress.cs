@@ -7,9 +7,13 @@ namespace TankU.SaveData
     [System.Serializable]
     public class PlayerProgress
     {
-        public int Id { get; private set; }
-        private List<MatchResult> _matchHistory = new List<MatchResult>();
-        private int _totalWin;
+        [SerializeField] private int _id;
+        [SerializeField] private List<MatchResult> _matchHistory = new();
+        [SerializeField] private int _totalWin;
+        [SerializeField] private int _totalPlay;
+        public int Id => _id;
+        public int TotalWin => _totalWin;
+        public int TotalPlay => _totalPlay;
 
         public enum MatchResult
         {
@@ -18,24 +22,25 @@ namespace TankU.SaveData
             TIE
         }
 
-        public int GetPlayerTotalWin()
+        public void SetId(int _i)
         {
-            return _totalWin;
+            _id = _i;
         }
 
-        public List<MatchResult> GetPlayerHistory()
+        public MatchResult GetHistoryByIndex(int _index)
         {
-            return _matchHistory;
+            return _matchHistory[_index];
         }
 
-        public void SetNewHistory(MatchResult _lastResult)
+        public void AddMatchResult(MatchResult _result)
         {
-            _matchHistory.Add(_lastResult);
+            _matchHistory.Add(_result);
+            if (_result == MatchResult.WIN)
+            {
+                _totalWin++;
+            }
+            _totalPlay++;
         }
 
-        public void SetId(int _id)
-        {
-            Id = _id;
-        }
     }
 }

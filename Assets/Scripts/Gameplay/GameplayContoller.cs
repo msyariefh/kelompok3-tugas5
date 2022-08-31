@@ -5,7 +5,7 @@ using TankU.Audio;
 
 public class GameplayContoller : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         AudioManager.Instance.PlayBGM("GameplayBGM");
     }
