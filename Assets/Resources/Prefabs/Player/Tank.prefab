@@ -286,7 +286,7 @@ MonoBehaviour:
   _powerUpController: {fileID: 0}
   _pauseController: {fileID: 0}
   _moveSpeed: 150
-  _rotateSpeed: 3
+  _rotateSpeed: 1
   _tankHead: {fileID: 7018023561691457982}
   _tankBody: {fileID: 8493651704654985949}
   _shootPos: {fileID: 7869312837473496687}
