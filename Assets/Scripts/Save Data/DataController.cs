@@ -29,6 +29,10 @@ namespace TankU.SaveData
 
         private void LoadAllPlayerProgress()
         {
+            if (!PlayerPrefs.HasKey("Player Data"))
+            {
+                SaveAllPlayerProgress();
+            }
             _playerData = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("Player Data"));
             if (_playerData.GetPlayerData().Count == 0)
             {
@@ -58,7 +62,6 @@ namespace TankU.SaveData
         public void SaveAllPlayerProgress()
         {
             PlayerPrefs.SetString("Player Data", JsonUtility.ToJson(_playerData));
-            print(JsonUtility.ToJson(_playerData));
             PlayerPrefs.Save();
         }
     }
