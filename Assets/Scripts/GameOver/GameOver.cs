@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TankU.HPSystem;
 using TankU.SaveData;
+using TankU.Audio;
 
 namespace TankU.GameOver
 {
@@ -66,11 +65,13 @@ namespace TankU.GameOver
         void GoMainMenu() 
         {
             SceneManager.LoadScene("Main Menu");
+            AudioManager.Instance.StopAllSFX();
         }
 
         void GoRetry() 
         {
             SceneManager.LoadScene("Gameplay");
+            AudioManager.Instance.StopAllSFX();
         }
     }
 }
