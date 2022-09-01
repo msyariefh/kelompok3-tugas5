@@ -34,7 +34,6 @@ namespace TankU.PlayerHistory
                 var _texts = _instantiated.GetComponentsInChildren<TMP_Text>();
                 for (int j = 0; j < DataController.Instance.TotalPlayer; j++)
                 {
-                    print(i + " " + j);
                     _texts[j].text = _playerData[j].GetHistoryByIndex(i).ToString();
                 }
             }

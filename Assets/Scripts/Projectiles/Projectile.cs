@@ -84,7 +84,6 @@ namespace TankU.Projectile
             
             if(_damageInterface != null)
             {
-                print("hit Player " + _damageInterface.Index);
                 OnHitPlayer?.Invoke(_damageInterface.Index);
                 Explode();
                 gameObject.SetActive(false);
