@@ -10,6 +10,11 @@ namespace TankU.PowerUP
         //public GameObject bouncepowerFX;
         public event Action<int, PowerUpController.Type> OnPlayerPicked;
 
+        void Start()
+        {
+            transform.Rotate(new Vector3(35, 0, 0));
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             IBuffable _buffInterface = other.gameObject.GetComponentInParent<IBuffable>();
