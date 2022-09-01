@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TankU.Audio;
 using TankU.PlayerInput;
 using TankU.PowerUP;
@@ -90,8 +89,6 @@ namespace TankU.PlayerObject
         {
             Vector3 _moveInput = _inputController.ProcessMoveInput();
 
-            if (_inputController.IsGameOver)
-                AudioManager.Instance.StopAllSFX();
             // Sound when idle
             if (_isGameStarted && !_inputController.IsGameOver)
             {

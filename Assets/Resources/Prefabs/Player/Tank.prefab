@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7018023561691457982
 Transform:
@@ -114,7 +114,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4904061388859714242
 Transform:
@@ -286,7 +286,7 @@ MonoBehaviour:
   _powerUpController: {fileID: 0}
   _pauseController: {fileID: 0}
   _moveSpeed: 150
-  _rotateSpeed: 1
+  _rotateSpeed: 2
   _tankHead: {fileID: 7018023561691457982}
   _tankBody: {fileID: 8493651704654985949}
   _shootPos: {fileID: 7869312837473496687}
@@ -326,7 +326,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &8493651704654985949
 Transform:
@@ -424,7 +424,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7869312837473496687
 Transform:
@@ -452,6 +452,10 @@ PrefabInstance:
     - target: {fileID: 148586, guid: c429f327a8ba1eb449114052a9028483, type: 3}
       propertyPath: m_Name
       value: Right Dust Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 148586, guid: c429f327a8ba1eb449114052a9028483, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 496482, guid: c429f327a8ba1eb449114052a9028483, type: 3}
       propertyPath: m_RootOrder
@@ -534,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 148586, guid: c429f327a8ba1eb449114052a9028483, type: 3}
       propertyPath: m_Name
       value: Left DustTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 148586, guid: c429f327a8ba1eb449114052a9028483, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 496482, guid: c429f327a8ba1eb449114052a9028483, type: 3}
       propertyPath: m_RootOrder

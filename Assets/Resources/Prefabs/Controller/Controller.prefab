@@ -187,12 +187,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countdownController: {fileID: 0}
   _pauseController: {fileID: 1523493672131577110}
-  _maximumPowerUpInField: 2
+  _maximumPowerUpInField: 3
   _medicPowerUpPrefab: {fileID: 8397615600578355693, guid: 95f40dde94d5e1447b4322f86fadf527, type: 3}
   _bouncePowerUpPrefab: {fileID: 2577321550210917751, guid: f55e7da4162aa9e47bd8598376baaa5b, type: 3}
   _spawnCooldown: 10
   _yPositionToSpawn: 5
-  _bouncePowerUpTime: 5
+  _bouncePowerUpTime: 8
   _medicHealthAmount: 1
 --- !u!1 &1523493672131577109
 GameObject:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countdown: {fileID: 0}
   _pauseController: {fileID: 1523493672131577110}
-  _gameLimitInSecond: 120
+  _gameLimitInSecond: 180
 --- !u!1 &1523493672485452460
 GameObject:
   m_ObjectHideFlags: 0

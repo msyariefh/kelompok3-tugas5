@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -23,7 +21,6 @@ namespace TankU.Tutorials
 
 
         private int _tutorialPos  = 0;
-        private bool _isTutorial = false;
 
         // Start is called before the first frame update
         void Start()
@@ -33,23 +30,9 @@ namespace TankU.Tutorials
             _prev.GetComponent<Button>().onClick.AddListener(ButtonCheckPrev);
            // popup(true);
         }
-
-        void PopUp( bool pop)
-        {
-            _isTutorial = pop;
-            if (_isTutorial)
-            {
-                _tutPopUp.SetActive(true);
-                _tutorialPos = 0;
-                _prev.gameObject.SetActive(false);
-            }
-            else
-                _tutPopUp.SetActive(false);
-        }
         void Next()
         {
             _tutorialPos += 1;
-            Debug.Log(_tutorialPos);
         }
 
 
@@ -57,7 +40,6 @@ namespace TankU.Tutorials
         {
 
             _tutorialPos -= 1;
-            Debug.Log(_tutorialPos);
         }
 
         void ButtonCheckNext()

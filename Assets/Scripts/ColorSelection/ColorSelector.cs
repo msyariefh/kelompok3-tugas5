@@ -61,8 +61,6 @@ namespace TankU.ColorSelection
 
             for (int i = 0; i < _milestone.Length; i++)
             {
-                print(_totalWins[_id]);
-                print(_milestone[i]);
                 if (_totalWins[_id] >= _milestone[i])
                 {
                     _availableColors[_id].Add(_premium[i].color);

@@ -144,6 +144,7 @@ namespace TankU.Audio
             foreach(Sound s in _sounds)
             {
                 if (s.IsBGM) continue;
+                if (!s.AudioSource.loop) continue;
                 if (!s.AudioSource.isPlaying) continue;
                 s.AudioSource.Stop();
             }

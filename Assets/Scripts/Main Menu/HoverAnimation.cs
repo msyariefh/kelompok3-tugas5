@@ -8,21 +8,20 @@ namespace TankU.MainMenu
 {
     public class HoverAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private TMP_Text _textToBeAnimated;
         private Vector3 _initScale;
 
         private void Start()
         {
-            _initScale = _textToBeAnimated.transform.localScale;
+            _initScale = transform.localScale;
         }
         public void OnPointerEnter(PointerEventData eventData)
         {
-            LeanTween.scale(_textToBeAnimated.gameObject, new Vector3(1.2f, 1.2f, _initScale.z), .15f);
+            LeanTween.scale(gameObject, new Vector3( _initScale.x * 1.25f, _initScale.y * 1.25f, _initScale.z), .15f);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            LeanTween.scale(_textToBeAnimated.gameObject, _initScale, .15f);
+            LeanTween.scale(gameObject, _initScale, .15f);
         }
     }
 
