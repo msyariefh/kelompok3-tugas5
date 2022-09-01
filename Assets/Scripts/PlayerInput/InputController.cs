@@ -14,6 +14,7 @@ namespace TankU.PlayerInput
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private float _playerShootInterval;
         [SerializeField] private float _playerPlantBombInterval;
+        [SerializeField] private Transform _playerHead;
 
         private bool _isInShootCooldown = false;
         private bool _isInPlantBombCooldown = false;
@@ -55,10 +56,10 @@ namespace TankU.PlayerInput
         public Vector3 ProcessMoveInput()
         {
             if (_isGamePaused) return Vector3.zero;
-            if (Input.GetKey(_inputScriptable.InputKeys.moveLeft)) return Vector3.left;
-            if (Input.GetKey(_inputScriptable.InputKeys.moveRight)) return Vector3.right;
-            if (Input.GetKey(_inputScriptable.InputKeys.moveForward)) return Vector3.forward;
-            if (Input.GetKey(_inputScriptable.InputKeys.moveBackward)) return Vector3.back;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveLeft)) return -_playerHead.transform.right;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveRight)) return _playerHead.transform.right;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveForward)) return _playerHead.transform.forward;
+            if (Input.GetKey(_inputScriptable.InputKeys.moveBackward)) return -_playerHead.transform.forward;
             return Vector3.zero;
         }
 
