@@ -37,6 +37,7 @@ namespace TankU.GameOver
         void OnGameOver(int c)
         {
             transform.GetChild(0).gameObject.SetActive(true);
+            AudioManager.Instance.PlaySFX("WinSFX");
             CheckWin(c);
 
         }

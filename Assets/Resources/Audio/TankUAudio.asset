@@ -50,7 +50,7 @@ MonoBehaviour:
     _audioClip: {fileID: 8300000, guid: 61f6a16ee99c90843a54fde937cc4ad8, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: 7055319419093695732, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
-  - _name: Nonsense
-    _audioClip: {fileID: 8300000, guid: 61f6a16ee99c90843a54fde937cc4ad8, type: 3}
+  - _name: WinSFX
+    _audioClip: {fileID: 8300000, guid: bf696232d7d9c4042afe4900209837da, type: 3}
     _isBGM: 0
     _audioMixerGroup: {fileID: 7055319419093695732, guid: f1a6840ccf0d63048be8f9613a5680a7, type: 2}
