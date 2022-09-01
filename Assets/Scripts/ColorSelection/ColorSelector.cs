@@ -24,6 +24,7 @@ namespace TankU.ColorSelection
 
         private List<Color>[] _availableColors;
         private int[] _totalWins;
+        private int[] _totalOpenedSkins;
 
         private int[] _indexSelected;
 
@@ -39,10 +40,12 @@ namespace TankU.ColorSelection
             }
             _indexSelected = new int[_playerNum];
             _totalWins = new int[_playerNum];
+            _totalOpenedSkins = new int[_playerNum];
             for (int i = 0; i < _indexSelected.Length; i++)
             {
                 _indexSelected[i] = 0;
                 _totalWins[i] = DataController.Instance.GetPlayerProgress(i).TotalWin;
+                _totalOpenedSkins[i] = DataController.Instance.GetPlayerProgress(i).TotalOpenedSkin;
                 InitAvailableColors(i);
                 colorView[i].GetComponent<Image>().color = _availableColors[i][0];
             }
@@ -59,11 +62,22 @@ namespace TankU.ColorSelection
                 _availableColors[_id].Add(colorTankList.color);
             }
 
+            if (_totalOpenedSkins[_id] > 0)
+            {
+                for(int i = 0; i < _totalOpenedSkins[_id]; i++)
+                {
+                    _availableColors[_id].Add(_premium[i].color);
+                }
+            }
+
+            if (_totalOpenedSkins[_id] == _premium.Length) return;
+
             for (int i = 0; i < _milestone.Length; i++)
             {
                 if (_totalWins[_id] >= _milestone[i])
                 {
                     _availableColors[_id].Add(_premium[i].color);
+                    DataController.Instance.GetPlayerProgress(_id).AddSkin();
                 }
                 else
                 {
