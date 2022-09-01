@@ -44,7 +44,7 @@ namespace TankU.Bomb
             GameObject _readyBomb = GetObjectFromPool(_bombPool);
             if (_readyBomb == null)
             {
-                _readyBomb = Instantiate(_bombPrefab, _player.position, Quaternion.identity);
+                _readyBomb = Instantiate(_bombPrefab, _player.position, _bombPrefab.transform.rotation);
                 IHitable _hitableInterface = _readyBomb.GetComponent<IHitable>();
                 _hitableInterface.OnHitPlayer += OnHitPlayer;
                 _readyBomb.GetComponent<Bomb>().SetPauseController(_pauseController);
