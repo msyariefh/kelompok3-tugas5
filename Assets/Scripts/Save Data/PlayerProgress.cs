@@ -10,9 +10,12 @@ namespace TankU.SaveData
         [SerializeField] private List<MatchResult> _matchHistory = new();
         [SerializeField] private int _totalWin;
         [SerializeField] private int _totalPlay;
+        [SerializeField] private int _totalOpenedSkin;
         public int Id => _id;
         public int TotalWin => _totalWin;
         public int TotalPlay => _totalPlay;
+
+        public int TotalOpenedSkin => _totalOpenedSkin;
 
         public enum MatchResult
         {
@@ -39,6 +42,11 @@ namespace TankU.SaveData
                 _totalWin++;
             }
             _totalPlay++;
+        }
+
+        public void AddSkin()
+        {
+            _totalOpenedSkin++;
         }
 
     }
