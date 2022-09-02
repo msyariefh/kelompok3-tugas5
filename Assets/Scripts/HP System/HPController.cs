@@ -22,6 +22,7 @@ namespace TankU.HPSystem
         public event Action<int, int> OnPlayerHealthChange;
         public event Action<List<int>> OnPlayerHealthInit;
         private List<int> _playerHPs = new();
+        private bool _isGameOver = false;
 
         private void Start()
         {
@@ -49,10 +50,13 @@ namespace TankU.HPSystem
 
         private void OnPlayerHit(int _playerIndex, int _damage)
         {
+            if (_isGameOver) return;
             if(_playerHPs[_playerIndex] - _damage < 1)
             {
                 _playerHPs[_playerIndex] = 0;
+                _isGameOver = true;
                 OnPlayerHealthChange?.Invoke(_playerIndex, _playerHPs[_playerIndex]);
+
                 InvokeGameOverCondition();
                 _timerController.GetComponent<IPausable>().OnGameOver(0);
                 return;
