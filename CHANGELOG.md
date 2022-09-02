@@ -4,6 +4,8 @@
 #### Changed:
 - Change the logic behing win-lose calculation
 - Change Lighting settings for device optimization
+#### Added:
+- Light Map for Gameplay Scene
 
 ## [v1.0.6] Color Selection Visual Bug Fixed
 #### Changed:
