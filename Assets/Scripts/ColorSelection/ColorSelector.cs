@@ -73,7 +73,7 @@ namespace TankU.ColorSelection
                 }
             }
 
-            if (_totalOpenedSkins[_id] == _premium.Length) return;
+            if (_totalOpenedSkins[_id] >= _premium.Length) return;
 
             //for (int i = 0; i < _milestone.Length; i++)
             //{
