@@ -1,6 +1,9 @@
+using TankU.Audio;
 using TankU.PlayerInput;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace TankU.Pause
 {
@@ -9,7 +12,20 @@ namespace TankU.Pause
     {
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private GameObject _pausePopUp;
-        
+        [SerializeField] private Button _mainMenuButton;
+
+
+        private void Start()
+        {
+            _mainMenuButton.onClick.AddListener(GoMainMenu);
+        }
+
+        private void GoMainMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
+            AudioManager.Instance.StopAllSFX();
+        }
+
         private void OnEnable()
         {
             _pauseController.OnGamePause += OnGamePaused;

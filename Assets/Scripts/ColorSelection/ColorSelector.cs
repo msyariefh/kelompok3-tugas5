@@ -23,7 +23,8 @@ namespace TankU.ColorSelection
         [SerializeField] private int[] _milestone;
 
         private List<Color>[] _availableColors;
-        private int[] _totalWins;
+        //private int[] _totalWins;
+        private int[] _levels;
         private int[] _totalOpenedSkins;
 
         private int[] _indexSelected;
@@ -39,12 +40,14 @@ namespace TankU.ColorSelection
                 btnPicks[i].onClick.AddListener(delegate { ChangeMaterial(x); });
             }
             _indexSelected = new int[_playerNum];
-            _totalWins = new int[_playerNum];
+            //_totalWins = new int[_playerNum];
             _totalOpenedSkins = new int[_playerNum];
+            _levels = new int[_playerNum];
             for (int i = 0; i < _indexSelected.Length; i++)
             {
                 _indexSelected[i] = 0;
-                _totalWins[i] = DataController.Instance.GetPlayerProgress(i).TotalWin;
+                //_totalWins[i] = DataController.Instance.GetPlayerProgress(i).TotalWin;
+                _levels[i] = DataController.Instance.GetPlayerProgress(i).Level;
                 _totalOpenedSkins[i] = DataController.Instance.GetPlayerProgress(i).TotalOpenedSkin;
                 InitAvailableColors(i);
                 colorView[i].GetComponent<Image>().color = _availableColors[i][0];
@@ -72,9 +75,21 @@ namespace TankU.ColorSelection
 
             if (_totalOpenedSkins[_id] >= _premium.Length) return;
 
-            for (int i = _totalOpenedSkins[_id]; i <= _milestone.Length; i++)
+            //for (int i = 0; i < _milestone.Length; i++)
+            //{
+            //    if (_totalWins[_id] >= _milestone[i])
+            //    {
+            //        _availableColors[_id].Add(_premium[i].color);
+            //        DataController.Instance.GetPlayerProgress(_id).AddSkin();
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
+            //}
+            for (int i = _totalOpenedSkins[_id]; i <= _premium.Length; i++)
             {
-                if (_totalWins[_id] >= _milestone[i])
+                if (_levels[_id] >= (i + 1) * 2)
                 {
                     _availableColors[_id].Add(_premium[i].color);
                     DataController.Instance.GetPlayerProgress(_id).AddSkin();

@@ -39,9 +39,19 @@ namespace TankU.SaveData
                 {
                     _playerData.AddPlayerData(new PlayerProgress(), i);
                 }
-
-                SaveAllPlayerProgress();
             }
+            else
+            {
+                List<PlayerProgress> _list = _playerData.GetPlayerData();
+                for(int i = 0; i < _list.Count; i++)
+                {
+                    if (IsPlayerDataOld(_list[i]))
+                    {
+                        _list[i].UpdateFromOldData();
+                    }
+                }
+            }
+            SaveAllPlayerProgress();
         }
 
         public PlayerProgress GetPlayerProgress(int _id)
@@ -62,6 +72,12 @@ namespace TankU.SaveData
         {
             PlayerPrefs.SetString("Player Data", JsonUtility.ToJson(_playerData));
             PlayerPrefs.Save();
+        }
+
+        private bool IsPlayerDataOld(PlayerProgress _playerProgress)
+        {
+            if (_playerProgress.TotalExp == 0 && _playerProgress.TotalPlay > 0) return true;
+            return false;
         }
     }
 
