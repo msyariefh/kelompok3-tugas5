@@ -89,7 +89,7 @@ namespace TankU.ColorSelection
             //}
             for (int i = _totalOpenedSkins[_id]; i <= _premium.Length; i++)
             {
-                if (_levels[_id] >= i * 2)
+                if (_levels[_id] >= (i + 1) * 2)
                 {
                     _availableColors[_id].Add(_premium[i].color);
                     DataController.Instance.GetPlayerProgress(_id).AddSkin();
